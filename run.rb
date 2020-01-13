@@ -44,7 +44,7 @@ def begin_game
     main_menu_ui.header = "                               MAIN MENU - Week: #{week}"
     main_menu_ui.body = "            #{our_startup.name}\n Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}"
     main_menu_ui.has_border = true
-    main_menu_ui.border_type = "dash-lg"
+    main_menu_ui.border_type = "carrot-lg"
     main_menu_ui.has_divider = true
 
 
@@ -224,6 +224,7 @@ view_company_ui.method(:prompt), view_employees_ui.method(:prompt), view_product
     
     
     main_menu_ui.prompt 
+
     binding.pry
     
     
