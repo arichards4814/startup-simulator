@@ -182,7 +182,6 @@ class UI
         else 
             @border_visual = LINE_MEDIUM
         end
-
     end
 
     def self.simple_question(question)
@@ -195,7 +194,7 @@ class UI
     end
 
     ## Added specifically for Startup Simulator ## Not included in Tiny Game Engine ##
-
+    ## should use a module for this and include these????
     def generate_name_ui
         generate_name(NAMES1,NAMES2,NAMES3)
     end
