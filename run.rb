@@ -131,11 +131,29 @@ def begin_game
 
 
 
+   ##Choose Employee to Hire 
+    emp = Employee.three_emps
+    choose_employee_ui = UI.new("choose_employee_ui")
+    choose_employee_ui.menu_items =["[1] #{emp[0].name} -> " + "Salary:" + "$#{emp[0].salary}, " + "Personality:" + " #{emp[0].personality}, " + "Job:" + " #{emp[0].job}," + " Skill Level:" + " #{emp[0].skill_level}",  "[2] #{emp[1].name} -> " + "Salary:" + "$#{emp[1].salary}, " + "Personality:" + " #{emp[1].personality}, " + "Job:" + " #{emp[1].job}," + " Skill Level:" + " #{emp[1].skill_level}", "[3] #{emp[2].name} -> " + "Salary:" + "$#{emp[2].salary}, " + "Personality:" + " #{emp[2].personality}, " + "Job:" + " #{emp[2].job}," + " Skill Level:" + " #{emp[2].skill_level}", "","",""]
+    choose_employee_ui.header = "                           CHOOSE EMPLOYEES - Week: #{week}"
+    choose_employee_ui.question_prompt = "\nChoose an Employee to hire!".green 
+    
+    
+    
+    
+    
+    
+    # choose_employee_ui.body ="             #{emp[0].name}, #{emp[1].name}, #{emp[2].name}\n             #{emp[0].salary}, #{emp[1].salary}, #{emp[2].salary}\n             #{emp[0].personality}, #{emp[1].personality}, #{emp[2].personality}\n             #{emp[0].job}, #{emp[1].job}, #{emp[2].job}\n             #{emp[0].skill_level}, #{emp[1].skill_level}, #{emp[2].skill_level}"
+    # choose_employee_ui.body = "             #{emp[0].name} -> " + "Salary:" + "$#{emp[0].salary}, " + "Personality:" + " #{emp[0].personality}, " + "Job:" + " #{emp[0].job}," + " Skill Level:" + " #{emp[0].skill_level}\n
+    #          #{emp[1].name} -> " + "Salary:" + "$#{emp[1].salary}, " + "Personality:" + " #{emp[1].personality}, " + "Job:" + " #{emp[1].job}," + " Skill Level:" + " #{emp[1].skill_level}\n             
+    #          #{emp[2].name} -> " + "Salary:" + "$#{emp[2].salary}, " + "Personality:" + " #{emp[2].personality}, " + "Job:" + " #{emp[2].job}," + " Skill Level:" + " #{emp[2].skill_level}"
 
 
-
-
+    
+    
+    
     ### CREATE MENU LOGIC HERE WHEN LINKING TOGETHER MENUS ###
+    instantiate_employees
 
 
     
@@ -143,10 +161,16 @@ def begin_game
     main_menu_ui.set_logic(raise_capital_ui.method(:prompt), hire_employees_ui.method(:prompt), build_improve_prod_ui.method(:prompt),
 view_company_ui.method(:prompt), view_employees_ui.method(:prompt), view_products_ui.method(:prompt) )
 
+    a = lambda {Employee.three_emps}
+    emp1 = lambda {our_startup.hire_employee(emp[0])}
+    emp2 = lambda {our_startup.hire_employee(emp[1])}
+    emp3 = lambda {our_startup.hire_employee(emp[2])}
 
 
+    hire_employees_ui.set_logic(choose_employee_ui.method(:prompt))
+    choose_employee_ui.set_logic(emp1, emp2, emp3)
 
-
+    binding.pry
 
 
 
@@ -200,7 +224,7 @@ view_company_ui.method(:prompt), view_employees_ui.method(:prompt), view_product
     
     
     main_menu_ui.prompt 
-    
+    binding.pry
     
     
     
@@ -224,4 +248,3 @@ end
 instantiate_employees
 begin_game
 
-binding.pry

@@ -63,15 +63,21 @@ class UI
         if input == 1
             if @logic[0].class == Method
             @logic[0].call
+            elsif @logic[0].class == Proc
+                @logic[0].call
             else
                 @logic[0]
             end
         elsif input == 2
             if @logic[1]
                 @logic[1].call
+            elsif @logic[1].class == Proc
+                @logic[1].call
             end
         elsif input == 3
             if @logic[2]
+                @logic[2].call
+            elsif @logic[2].class == Proc
                 @logic[2].call
             end
         elsif input == 4
