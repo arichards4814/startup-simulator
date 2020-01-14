@@ -40,7 +40,7 @@ class UI
         else 
             i = 0
             while i < (menu_items.count / 2)
-                puts "   #{menu_items[i]}        #{menu_items[i+3]} "
+                puts "   #{menu_items[i]}        #{menu_items[i+(menu_items.count / 2)]} "
                 i += 1
             end
         end
@@ -108,6 +108,8 @@ class UI
             else
                 @parent_menu.prompt
             end
+        elsif input.to_s == "quit"
+            
         else
             self.prompt
         end
@@ -133,7 +135,7 @@ class UI
         end
         puts @question_prompt
         input = gets.chomp
-        if input == "back"
+        if input == "back" || input == "quit"
         else
             input = input.to_i
         end
@@ -205,7 +207,6 @@ class UI
         puts question
         puts LINE_MEDIUM
         return gets.chomp
-
     end
 
     ## Added specifically for Startup Simulator ## Not included in Tiny Game Engine ##

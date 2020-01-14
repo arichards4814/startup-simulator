@@ -4,26 +4,35 @@ require_relative 'startup.rb'
 require_relative 'menus.rb'
 require_relative 'UI.rb'
 require_relative 'tech_name_generator.rb'
+require_relative 'gameevent.rb'
 include NamesVariables
 # require_relative 'ui_generator.rb'
 require 'pry'
 require 'colorize'
 
-# new_menu = UI.new(new_menu)
-# new_menu.header = "This will be such a cool menu."
-# new_menu.body = "Can't wait to see \nwhat the heck it does."
-# new_menu.has_border = true
-# new_menu.has_divider = true
-# new_menu.border_type = ("dash_lg")
-# new_menu.menu_items = ["[1] -  Yes", "[2] - No", 
-#                         "[3] - Test", "[4] - Test", 
-#                         "[5] - Test", "[6] - Test"]
-# new_menu.question_prompt = "What would you like to do?"
-# new_menu.response = "Thank you for your input!"
+employ1 = Employee.new("Tim")
+employ2 = Employee.new("John")
+employ3 = Employee.new("Steve")
+employ4 = Employee.new("Pilgrim")
 
+prod1 = Product.new("The Thing")
+
+ge1 = GameEvent.new(employ1, 1, " has been employed.")
+
+ge2 = GameEvent.new(employ2, 1, " has been employed.")
+
+ge2 = GameEvent.new(prod1, 1, " has been created.")
+
+ge3 = GameEvent.new(employ3, 2, " has been employed.")
+
+
+GameEvent.weeks_summary(1)
+UI.announce("Week #{week} is over!")
 
 # new_name = UI.simple_question("What is your name?")
+binding.pry
+0
 
-puts "test".blue + "test"
+
 
 # new_menu.prompt
