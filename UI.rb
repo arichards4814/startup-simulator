@@ -7,7 +7,8 @@ include DesignModule
 class UI
 
     attr_accessor :visual, :menu_items, :logic, :body, :header, :response, :final_output,
-    :has_border, :border_type, :border_visual, :has_divider, :question_prompt, :return_value, :get_return_value, :parent_menu
+    :has_border, :border_type, :border_visual, :has_divider, :question_prompt, :return_value, :get_return_value, :parent_menu,
+    :layout_type
     attr_reader :menu_title
 
     @@all = []
@@ -26,7 +27,15 @@ class UI
     end
 
     def visual 
-        if menu_items.count == 2
+        if @layout_type == "vertical"
+            i = 0
+            while i < (menu_items.count)
+                puts "   #{menu_items[i]}"
+                i += 1
+            end
+            return
+        end
+        if menu_items.count == 2 
             puts "   #{menu_items[0]}        #{menu_items[1]} "
         else 
             i = 0

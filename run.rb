@@ -134,7 +134,8 @@ def begin_game
    ##Choose Employee to Hire 
     emp = Employee.three_emps
     choose_employee_ui = UI.new("choose_employee_ui")
-    choose_employee_ui.menu_items =["[1] #{emp[0].name} -> " + "Salary:" + "$#{emp[0].salary}, " + "Personality:" + " #{emp[0].personality}, " + "Job:" + " #{emp[0].job}," + " Skill Level:" + " #{emp[0].skill_level}",  "[2] #{emp[1].name} -> " + "Salary:" + "$#{emp[1].salary}, " + "Personality:" + " #{emp[1].personality}, " + "Job:" + " #{emp[1].job}," + " Skill Level:" + " #{emp[1].skill_level}", "[3] #{emp[2].name} -> " + "Salary:" + "$#{emp[2].salary}, " + "Personality:" + " #{emp[2].personality}, " + "Job:" + " #{emp[2].job}," + " Skill Level:" + " #{emp[2].skill_level}", "","",""]
+    choose_employee_ui.layout_type = ("vertical")
+    choose_employee_ui.menu_items =["[1] #{emp[0].name} -> " + "Salary:" + "$#{emp[0].salary}, " + "Personality:" + " #{emp[0].personality}, " + "Job:" + " #{emp[0].job}," + " Skill Level:" + " #{emp[0].skill_level}",  "[2] #{emp[1].name} -> " + "Salary:" + "$#{emp[1].salary}, " + "Personality:" + " #{emp[1].personality}, " + "Job:" + " #{emp[1].job}," + " Skill Level:" + " #{emp[1].skill_level}", "[3] #{emp[2].name} -> " + "Salary:" + "$#{emp[2].salary}, " + "Personality:" + " #{emp[2].personality}, " + "Job:" + " #{emp[2].job}," + " Skill Level:" + " #{emp[2].skill_level}"]
     choose_employee_ui.header = "                           CHOOSE EMPLOYEES - Week: #{week}"
     choose_employee_ui.question_prompt = "\nChoose an Employee to hire!".green 
     
