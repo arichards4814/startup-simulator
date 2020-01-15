@@ -246,13 +246,14 @@ def begin_game
     view_products_ui.header = "                           PRODUCTS PANEL - Week: #{week}"
     view_products_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     ##regenerate employee choices...
-    choose_employee_ui.menu_items =["[1] #{emp[0].name} -> " + "Salary:" + "$#{emp[0].salary}, " + "Personality:" + " #{emp[0].personality}, " + "Job:" + " #{emp[0].job}," + " Skill Level:" + " #{emp[0].skill_level}",  "[2] #{emp[1].name} -> " + "Salary:" + "$#{emp[1].salary}, " + "Personality:" + " #{emp[1].personality}, " + "Job:" + " #{emp[1].job}," + " Skill Level:" + " #{emp[1].skill_level}", "[3] #{emp[2].name} -> " + "Salary:" + "$#{emp[2].salary}, " + "Personality:" + " #{emp[2].personality}, " + "Job:" + " #{emp[2].job}," + " Skill Level:" + " #{emp[2].skill_level}"]
-    choose_employee_ui.header = "                           CHOOSE EMPLOYEES - Week: #{week}"
+    
     emp = Employee.three_emps
     a = lambda {Employee.three_emps}
     emp1 = lambda {our_startup.hire_employee(emp[0],week)}
     emp2 = lambda {our_startup.hire_employee(emp[1],week)}
     emp3 = lambda {our_startup.hire_employee(emp[2],week)}
+    choose_employee_ui.menu_items =["[1] #{emp[0].name} -> " + "Salary:" + "$#{emp[0].salary}, " + "Personality:" + " #{emp[0].personality}, " + "Job:" + " #{emp[0].job}," + " Skill Level:" + " #{emp[0].skill_level}",  "[2] #{emp[1].name} -> " + "Salary:" + "$#{emp[1].salary}, " + "Personality:" + " #{emp[1].personality}, " + "Job:" + " #{emp[1].job}," + " Skill Level:" + " #{emp[1].skill_level}", "[3] #{emp[2].name} -> " + "Salary:" + "$#{emp[2].salary}, " + "Personality:" + " #{emp[2].personality}, " + "Job:" + " #{emp[2].job}," + " Skill Level:" + " #{emp[2].skill_level}"]
+    choose_employee_ui.header = "                           CHOOSE EMPLOYEES - Week: #{week}"
     hire_employees_ui.set_logic(choose_employee_ui.method(:prompt))
     choose_employee_ui.set_logic(emp1, emp2, emp3)
     
@@ -260,7 +261,14 @@ def begin_game
     #prompt the main menu
     main_menu_ui.prompt 
 
+
+
+
+    #calculate game 
+
+
     #end the week
+    UI.blank_space(5)
     UI.announce("Week #{week} is over! Let's see how you fared...")
     UI.blank_space(5)
     GameEvent.weeks_summary(week) #run function that puts out the weeks events
@@ -269,6 +277,9 @@ def begin_game
 
     week += 1;
     i += 1;
+
+
+
     end
 
     # binding.pry

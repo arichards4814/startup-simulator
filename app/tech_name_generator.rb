@@ -7,7 +7,8 @@ module NamesVariables
 
 NAMES1 = ["Face", "Pig", "Flat", "Duck", "Meme", "Dura", "Exo",
 "You", "Table", "Scatter", "Slop", "Kumquot", "Purple", "Lovely",
-"Micro", "App", "E -", "Bio", "Ameri", "Quantum", "Logi", "Imagi"]
+"Micro", "App", "E -", "Bio", "Ameri", "Quantum", "Logi", "Imagi", "Gator",
+"Elephant", "Mongoose", "Tiny", "Loud", "Humongous"]
 
 NAMES2 = ["Gizzard", "Camel", "Babies", "Tech", "Bay", "Book", "Iron", 
 "Firm", "Vapes", "Capital", "Ware", "Soft"]

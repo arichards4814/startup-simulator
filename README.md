@@ -3,7 +3,8 @@
 
 What you need....
 If you do not have the gem 'colorize' please make sure to install it. 
-If you don't use the ruby gem 'pry' I also recommend you use it. 
+If you don't use the ruby gem 'pry' I also recommend you use it.
+Run Bundler to install.
 
 Thanks for taking a look at Startup Simulator and the Tiny Game Engine (TGE). 
 Tiny Game Engine is a UI and game design system created to make building games
@@ -107,4 +108,8 @@ Will allow you to build stories with decision making branches that effect the di
 
 
 
+
+# BUGS
+
+ADAM FOUND THIS BUG - THE EMPLOYEES ARE NOT HIRING THE RIGHT PEOPLE WHEN YOU CHOOSE
 
