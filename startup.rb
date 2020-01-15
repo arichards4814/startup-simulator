@@ -1,4 +1,5 @@
 require 'colorize'
+require_relative 'UI.rb'
 
 class Startup
 
@@ -69,6 +70,7 @@ def all_employees
 end
 
 def raise_capital_friends_and_fam(week)
+    UI.blank_space(7)
     if @fam_trys == 0
         UI.announce("Your friend Gary believes in you... he gives you $5000!".green)
         self.increase_funds(5000)

@@ -87,37 +87,37 @@ class UI
             @return_value
         end
 
-        if input == 1 && menu_items_unlocked[0] = true
+        if input == 1 && menu_items_unlocked[0] == true
             if @logic[0].class == Method || @logic[0].class == Proc
             @logic[0].call
             else
                 @logic[0]
             end
-        elsif input == 2 && menu_items_unlocked[1] = true
+        elsif input == 2 && menu_items_unlocked[1] == true
             if @logic[1].class == Method || @logic[1].class == Proc
                 @logic[1].call
             else
                 @logic[1]
             end
-        elsif input == 3 && menu_items_unlocked[2] = true
+        elsif input == 3 && menu_items_unlocked[2] == true
             if @logic[2].class == Method || @logic[2].class == Proc
                 @logic[2].call
             else
                 @logic[2]
             end
-        elsif input == 4 && menu_items_unlocked[3] = true
+        elsif input == 4 && menu_items_unlocked[3] == true
             if @logic[3].class == Method || @logic[3].class == Proc
                 @logic[3].call
             else
                 @logic[3]
             end
-        elsif input == 5 && menu_items_unlocked[4] = true
+        elsif input == 5 && menu_items_unlocked[4] == true
             if @logic[4] == Method || @logic[4].class == Proc
                 @logic[4].call
             else
                 @logic[4]
             end
-        elsif input == 6 && menu_items_unlocked[5] = true
+        elsif input == 6 && menu_items_unlocked[5] == true
             if @logic[5] == Method || @logic[5].class == Proc
                 @logic[5].call
             else @logic[5]
@@ -133,6 +133,9 @@ class UI
         elsif input.to_s == "quit"
             exit
         else
+            UI.blank_space(5)
+            puts "Option not unlocked!".red
+            Ui.blank_space(5)
             self.prompt
         end
 
@@ -155,7 +158,13 @@ class UI
         if @has_border
             puts border_visual
         end
+        if @question_prompt.class == String
         puts @question_prompt
+        elsif @question_prompt.class == Array
+            @question_prompt.each do |ele|
+                puts ele
+            end
+        end
         input = gets.chomp
         if input == "back" || input == "quit"
         else

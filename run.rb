@@ -6,6 +6,7 @@ require_relative 'UI.rb'
 require_relative 'tech_name_generator.rb'
 require_relative 'gameevent.rb'
 include NamesVariables
+include NamesVariablesMenWomen
 # require_relative 'ui_generator.rb'
 require 'pry'
 require 'colorize'
@@ -14,10 +15,12 @@ require 'colorize'
 def begin_game
 
     week = 1;
+##Generate Startup
+    instantiate_employees(100) # creates 100 employees
+##Generate Startup
+    our_startup = Startup.new("No Name")
 
 ##Generate Menus##
-    #Generate Startup
-    our_startup = Startup.new("No Name")
     
     ## START GAME UI ##
     start_game_ui = UI.new("start_game_ui")
@@ -145,7 +148,7 @@ def begin_game
         arr1 = our_startup.products.map  do |product|
             "#{product.name}  | xx | xx | xx | xx\n"
         end
-        arr1 = arr1.join
+        arr1
     end 
     view_products_ui.question_prompt = arr1
 
@@ -182,7 +185,6 @@ def begin_game
 
     
     ### CREATE MENU LOGIC HERE WHEN LINKING TOGETHER MENUS ###
-    instantiate_employees # creates 100 employees
 
 
     
@@ -232,10 +234,11 @@ def begin_game
 
     
     UI.announce("Congrats! #{our_startup.name} has been created","blue")
+    UI.blank_space(5)
     UI.announce("Time to raise some capital and get this thing started!","green")
     i = 0
 
-    ##Game Loop##
+    ######Game Loop######
     while i < 5
     ##refresh menus
     main_menu_ui.header = "                     MAIN MENU - Week: #{week}"
@@ -277,18 +280,15 @@ end
 
 
 
-def instantiate_employees
-    names = ["Alice", "Barry", "Charlie", "Adam", "Edgar", "Avi",
-    "Matthew", "Jerry", "Darius", "Billy", "Jay", "Steph", "Mary",
-    "Jalapeno", "Sarah", "Meghan"]
-
-    names.each do |name|
-        name = Employee.new(name)
+def instantiate_employees(num)
+    ##instantiates 'num' employees, num/2 female num/2 male
+    i = 0
+    while i < num
+    Employee.new(MALE_FIRST[rand(MALE_FIRST.count)])
+    Employee.new(FEMALE_FIRST[rand(FEMALE_FIRST.count)])
+    i += 1
     end
 end
 
-
-
-instantiate_employees
 begin_game
 
