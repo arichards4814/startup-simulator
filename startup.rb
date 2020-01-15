@@ -82,9 +82,9 @@ def raise_capital_friends_and_fam(week)
         self.increase_recognition(1)
         UI.announce("Your friend Harvey doesn't like you... but he gives you $5000 anyway!".green)
         self.increase_funds(5000)
-        UI.announce("Your Uncle Boris recently came into some money. He gives you $5,000!".green)
+        UI.announce("Your Uncle Boris recently came into some money. He gives you $5000!".green)
         self.increase_funds(5000)
-        GameEvent.new(nil, week, "You've raised $5000!")
+        GameEvent.new(nil, week, "You've raised $10000!")
         GameEvent.new(nil, week, "Your recognition has been increased by 1 point!")
         @fam_trys += 1
     elsif @fam_trys >= 2

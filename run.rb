@@ -60,6 +60,7 @@ def begin_game
     raise_capital_ui.border_type = "dash-lg"
     raise_capital_ui.has_divider = true
     raise_capital_ui.parent_menu = main_menu_ui
+    raise_capital_ui.menu_items_unlocked = [true, false, false, false, false, false]
 
 
     ## Hire Employees menu ##
@@ -152,6 +153,8 @@ def begin_game
     view_products_ui.has_divider = true
     view_products_ui.parent_menu = main_menu_ui
 
+    view_products_ui.menu_items_unlocked = [true, false, false, false, false, false]
+
 
 
    ##Choose Employee to Hire Menu
@@ -238,17 +241,17 @@ def begin_game
     main_menu_ui.header = "                     MAIN MENU - Week: #{week}"
     main_menu_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     raise_capital_ui.header = "                           RAISE CAPITAL - Week: #{week}"
-    raise_capital_ui.body = "                        #{our_startup.name}\n              Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    raise_capital_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     hire_employees_ui.header = "                           HIRE EMPLOYEES - Week: #{week}"
-    hire_employees_ui.body = "                        #{our_startup.name}\n              Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    hire_employees_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     build_improve_prod_ui.header = "                       BUILD / IMPROVE PRODUCTS - Week: #{week}"
-    build_improve_prod_ui.body = "                        #{our_startup.name}\n              Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    build_improve_prod_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     view_company_ui.header = "                           COMPANY PANEL - Week: #{week}"
-    view_company_ui.body = "                        #{our_startup.name}\n              Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    view_company_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     view_employees_ui.header = "                           EMPLOYEE PANEL - Week: #{week}"
-    view_employees_ui.body = "                        #{our_startup.name}\n              Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    view_employees_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     view_products_ui.header = "                           PRODUCTS PANEL - Week: #{week}"
-    view_products_ui.body = "                        #{our_startup.name}\n              Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    view_products_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     
     
     #prompt the main menu

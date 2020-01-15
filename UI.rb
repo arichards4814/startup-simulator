@@ -2,13 +2,13 @@ require_relative 'ui_design_module.rb'
 require_relative 'tech_name_generator.rb'
 include NamesVariables
 include DesignModule
-
+require 'pry'
 
 class UI
 
     attr_accessor :visual, :menu_items, :logic, :body, :header, :response, :final_output,
     :has_border, :border_type, :border_visual, :has_divider, :question_prompt, :return_value, :get_return_value, :parent_menu,
-    :layout_type
+    :layout_type, :menu_items_unlocked
     attr_reader :menu_title
 
     @@all = []
@@ -19,6 +19,7 @@ class UI
         @visual = ""
         @logic = []
         @has_border = false
+        @menu_items_unlocked = [true, true, true, true, true, true]
         @@all << self
     end
 
@@ -30,17 +31,34 @@ class UI
         if @layout_type == "vertical"
             i = 0
             while i < (menu_items.count)
+                if menu_items_unlocked[i]
                 puts "   #{menu_items[i]}"
+                else
+                puts "   [#{i}] - ????????????" 
+                end
                 i += 1
             end
             return
         end
+
+
         if menu_items.count == 2 
             puts "   #{menu_items[0]}        #{menu_items[1]} "
         else 
             i = 0
-            while i < (menu_items.count / 2)
-                puts "   #{menu_items[i]}        #{menu_items[i+(menu_items.count / 2)]} "
+            while i < ((menu_items.count / 2))
+                
+                if menu_items_unlocked[i]
+                    left_item = menu_items[i]
+                else 
+                    left_item = "[#{i+1}] - ???????????       "
+                end
+                if menu_items_unlocked[i+(menu_items.count / 2)]
+                    right_item = menu_items[i+(menu_items.count / 2)]
+                else 
+                    right_item = "[#{i+(menu_items.count / 2)+1}] - ???????????"
+                end
+                puts "   #{left_item}        #{right_item} "
                 i += 1
             end
         end
@@ -69,37 +87,41 @@ class UI
             @return_value
         end
 
-        if input == 1
-            if @logic[0].class == Method
+        if input == 1 && menu_items_unlocked[0] = true
+            if @logic[0].class == Method || @logic[0].class == Proc
             @logic[0].call
-            elsif @logic[0].class == Proc
-                @logic[0].call
             else
                 @logic[0]
             end
-        elsif input == 2
-            if @logic[1]
+        elsif input == 2 && menu_items_unlocked[1] = true
+            if @logic[1].class == Method || @logic[1].class == Proc
                 @logic[1].call
-            elsif @logic[1].class == Proc
-                @logic[1].call
+            else
+                @logic[1]
             end
-        elsif input == 3
-            if @logic[2]
+        elsif input == 3 && menu_items_unlocked[2] = true
+            if @logic[2].class == Method || @logic[2].class == Proc
                 @logic[2].call
-            elsif @logic[2].class == Proc
-                @logic[2].call
+            else
+                @logic[2]
             end
-        elsif input == 4
-            if @logic[3]
+        elsif input == 4 && menu_items_unlocked[3] = true
+            if @logic[3].class == Method || @logic[3].class == Proc
                 @logic[3].call
+            else
+                @logic[3]
             end
-        elsif input == 5
-            if @logic[4]
+        elsif input == 5 && menu_items_unlocked[4] = true
+            if @logic[4] == Method || @logic[4].class == Proc
                 @logic[4].call
+            else
+                @logic[4]
             end
-        elsif input == 6
-            if @logic[5]
+        elsif input == 6 && menu_items_unlocked[5] = true
+            if @logic[5] == Method || @logic[5].class == Proc
                 @logic[5].call
+            else @logic[5]
+                @logic[5]
             end
         elsif input.to_s == "back"
             if !:parent_menu
@@ -109,7 +131,7 @@ class UI
                 @parent_menu.prompt
             end
         elsif input.to_s == "quit"
-            
+            exit
         else
             self.prompt
         end
