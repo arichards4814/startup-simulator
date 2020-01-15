@@ -1,3 +1,7 @@
+
+require_relative '../config/environment.rb'
+
+
 class Employee
 
     attr_accessor :name, :salary, :job, :personality, :skill_level, :status

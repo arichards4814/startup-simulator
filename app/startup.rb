@@ -1,5 +1,4 @@
-require 'colorize'
-require_relative 'UI.rb'
+require_relative '../config/environment.rb'
 
 class Startup
 

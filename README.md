@@ -92,12 +92,19 @@ TINY GAME ENGINE (TGE) FEATURES
 
 # UI Creator (UI.rb)
 Allows you to build out robust, styled menus. 
+- eventually want to be able to create logos with ASCII text
+
+# Game Events (gameevent.rb)
+- GameEvent class that stores game events. 
+
 
 # (Eventually) Gameobject Class (gameobject.rb)
 Will allow you to build player characters, enemy characters.
 
 # (Eventually) Story Class (story.rb)
 Will allow you to build stories with decision making branches that effect the direction of the story.
+
+
 
 
 

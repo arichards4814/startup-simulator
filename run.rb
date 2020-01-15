@@ -1,15 +1,6 @@
-require_relative 'employee.rb'
-require_relative 'product.rb'
-require_relative 'startup.rb'
-require_relative 'menus.rb'
-require_relative 'UI.rb'
-require_relative 'tech_name_generator.rb'
-require_relative 'gameevent.rb'
-include NamesVariables
-include NamesVariablesMenWomen
-# require_relative 'ui_generator.rb'
-require 'pry'
-require 'colorize'
+require_relative './config/environment.rb'
+
+
 
 
 def begin_game
@@ -177,6 +168,7 @@ def begin_game
     create_product_ui.parent_menu = build_improve_prod_ui
     create_product_ui.has_border = true
     create_product_ui.border_type = "dash-lg"
+    create_product_ui.menu_items_unlocked = [true, false, false, false]
     
     ## Build Game Events Here
     GameEvent.new(nil, 3, "Testing third week game event feature.")
@@ -191,13 +183,11 @@ def begin_game
 
     main_menu_ui.set_logic(raise_capital_ui.method(:prompt), hire_employees_ui.method(:prompt), build_improve_prod_ui.method(:prompt),
     view_company_ui.method(:prompt), view_employees_ui.method(:prompt), view_products_ui.method(:prompt) )
-
+    emp = Employee.three_emps
     a = lambda {Employee.three_emps}
     emp1 = lambda {our_startup.hire_employee(emp[0],week)}
     emp2 = lambda {our_startup.hire_employee(emp[1],week)}
     emp3 = lambda {our_startup.hire_employee(emp[2],week)}
-
-
     hire_employees_ui.set_logic(choose_employee_ui.method(:prompt))
     choose_employee_ui.set_logic(emp1, emp2, emp3)
     build_improve_prod_ui.set_logic(create_product_ui.method(:prompt))
@@ -255,6 +245,16 @@ def begin_game
     view_employees_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     view_products_ui.header = "                           PRODUCTS PANEL - Week: #{week}"
     view_products_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    ##regenerate employee choices...
+    choose_employee_ui.menu_items =["[1] #{emp[0].name} -> " + "Salary:" + "$#{emp[0].salary}, " + "Personality:" + " #{emp[0].personality}, " + "Job:" + " #{emp[0].job}," + " Skill Level:" + " #{emp[0].skill_level}",  "[2] #{emp[1].name} -> " + "Salary:" + "$#{emp[1].salary}, " + "Personality:" + " #{emp[1].personality}, " + "Job:" + " #{emp[1].job}," + " Skill Level:" + " #{emp[1].skill_level}", "[3] #{emp[2].name} -> " + "Salary:" + "$#{emp[2].salary}, " + "Personality:" + " #{emp[2].personality}, " + "Job:" + " #{emp[2].job}," + " Skill Level:" + " #{emp[2].skill_level}"]
+    choose_employee_ui.header = "                           CHOOSE EMPLOYEES - Week: #{week}"
+    emp = Employee.three_emps
+    a = lambda {Employee.three_emps}
+    emp1 = lambda {our_startup.hire_employee(emp[0],week)}
+    emp2 = lambda {our_startup.hire_employee(emp[1],week)}
+    emp3 = lambda {our_startup.hire_employee(emp[2],week)}
+    hire_employees_ui.set_logic(choose_employee_ui.method(:prompt))
+    choose_employee_ui.set_logic(emp1, emp2, emp3)
     
     
     #prompt the main menu

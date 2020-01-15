@@ -1,8 +1,4 @@
-require_relative 'ui_design_module.rb'
-require_relative 'tech_name_generator.rb'
-include NamesVariables
-include DesignModule
-require 'pry'
+require_relative '../config/environment.rb'
 
 class UI
 
@@ -135,7 +131,7 @@ class UI
         else
             UI.blank_space(5)
             puts "Option not unlocked!".red
-            Ui.blank_space(5)
+            UI.blank_space(5)
             self.prompt
         end
 

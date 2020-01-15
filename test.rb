@@ -1,12 +1,4 @@
-require_relative 'employee.rb'
-require_relative 'product.rb'
-require_relative 'startup.rb'
-require_relative 'menus.rb'
-require_relative 'UI.rb'
-require_relative 'tech_name_generator.rb'
-require_relative 'gameevent.rb'
-include NamesVariables
-include NamesVariablesMenWomen
+equire_relative './config/environment.rb'
 # require_relative 'ui_generator.rb'
 require 'pry'
 require 'colorize'
