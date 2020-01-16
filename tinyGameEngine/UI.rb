@@ -128,6 +128,9 @@ class UI
             end
         elsif input.to_s == "quit"
             exit
+        elsif input.to_s == "h" || input.to_s == "help"||input.to_s == "-h"
+            puts "Type 'quit' to exit. Type 'back' to go back."
+            self.prompt
         else
             UI.blank_space(5)
             puts "Option not unlocked!".red
@@ -162,7 +165,7 @@ class UI
             end
         end
         input = gets.chomp
-        if input == "back" || input == "quit"
+        if input == "back" || input == "quit" || input == "h" || input == "help"||input == "-h"
         else
             input = input.to_i
         end

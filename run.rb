@@ -171,7 +171,7 @@ def begin_game
     create_product_ui.menu_items_unlocked = [true, false, false, false]
     
     ## Build Game Events Here
-    GameEvent.new(nil, 3, "Testing third week game event feature.")
+    #GameEvent.new(nil, 3, "Testing third week game event feature.")
 
 
 
@@ -191,6 +191,8 @@ def begin_game
     hire_employees_ui.set_logic(choose_employee_ui.method(:prompt))
     choose_employee_ui.set_logic(emp1, emp2, emp3)
     build_improve_prod_ui.set_logic(create_product_ui.method(:prompt))
+
+    
 
     raise_f_and_f = lambda {our_startup.raise_capital_friends_and_fam(week)}
     raise_capital_ui.set_logic(raise_f_and_f)
@@ -229,7 +231,7 @@ def begin_game
     i = 0
 
     ######Game Loop######
-    while i < 5
+    while i < 10
     ##refresh menus
     main_menu_ui.header = "                     MAIN MENU - Week: #{week}"
     main_menu_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
@@ -246,7 +248,6 @@ def begin_game
     view_products_ui.header = "                           PRODUCTS PANEL - Week: #{week}"
     view_products_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     ##regenerate employee choices...
-    
     emp = Employee.three_emps
     a = lambda {Employee.three_emps}
     emp1 = lambda {our_startup.hire_employee(emp[0],week)}
@@ -265,7 +266,7 @@ def begin_game
 
 
     #calculate game 
-
+    our_startup.weekly_payroll_deducted(week)
 
     #end the week
     UI.blank_space(5)
@@ -289,8 +290,6 @@ def begin_game
 end
 
 
-
-
 def instantiate_employees(num)
     ##instantiates 'num' employees, num/2 female num/2 male
     i = 0
@@ -300,6 +299,24 @@ def instantiate_employees(num)
     i += 1
     end
 end
+
+
+## game triggers.... should be able to nicely write out my triggers in easily understood way. ##
+
+## if employees morale falls below 2... they put in their 2 weeks notice
+## if their morale does not get above 5, they really leave. Otherwise they decide to stay.
+## employee morale should be changed through an instance method that makes sure it cannot be
+## above 10 or below 0
+
+## if recognition is above 3 raise_capital_ui.menus_items_unlocked[1] == true
+## if recognition is above 5 raise_capital_ui.menus_items_unlocked[2] == true
+## if recognition is above 7 raise_capital_ui.menus_items_unlocked[3] == true
+## if recognition is above 10 raise_capital_ui.menus_items_unlocked[4] == true
+## if recognition is above 12 raise_capital_ui.menus_items_unlocked[5] == true
+
+## your first product will increase your recognition.
+
+
 
 begin_game
 

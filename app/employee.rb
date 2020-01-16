@@ -4,7 +4,7 @@ require_relative '../config/environment.rb'
 
 class Employee
 
-    attr_accessor :name, :salary, :job, :personality, :skill_level, :status
+    attr_accessor :name, :salary, :job, :personality, :skill_level, :status, :morale
     
 @@all = []
 
@@ -20,6 +20,7 @@ def initialize(name)
     @job = jobs[rand(2)]
     @status = "looking for work"
     @skill_level = rand(3)
+    @morale = 7
 
     @@all << self
 end

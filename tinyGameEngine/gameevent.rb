@@ -5,10 +5,10 @@ require 'pry'
 
 class GameEvent
 
-attr_accessor  :event_object, :week, :display
+attr_accessor  :event_object, :week, :display, :color
 
 @@all = []
-def initialize(event_object, week, display)
+def initialize(event_object, week, display, color = nil)
     @event_object = event_object
     @week = week
     if event_object
@@ -16,6 +16,12 @@ def initialize(event_object, week, display)
     else
         @display = display
     end
+    @color = color
+    # if color == red
+    #     @display = @display.to_s.red
+    # elsif color == blue
+    #     @display = @display.to_s.blue
+    # end
 
     @@all << self
 end
@@ -38,10 +44,17 @@ def self.weeks_summary(week)
         puts event.display.blue
         puts LINE_SQUIGGLES_MEDIUM.blue
         else 
-        puts LINE_SQUIGGLES_MEDIUM.green
-        puts event.display.green
-        puts LINE_SQUIGGLES_MEDIUM.green
+            if event.color == "red"
+                puts LINE_SQUIGGLES_MEDIUM.red
+                puts event.display.red
+                puts LINE_SQUIGGLES_MEDIUM.red
+            else
+                puts LINE_SQUIGGLES_MEDIUM.green
+                puts event.display.green
+                puts LINE_SQUIGGLES_MEDIUM.green
+            end
         end
+        
     end
 end
 
