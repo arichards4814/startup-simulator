@@ -7,6 +7,7 @@ class GameEvent
 
 attr_accessor  :event_object, :week, :display, :color
 
+@@gameclock = 1
 @@all = []
 def initialize(event_object, week, display, color = nil)
     @event_object = event_object
@@ -24,6 +25,17 @@ def initialize(event_object, week, display, color = nil)
     # end
 
     @@all << self
+end
+def self.gameclock
+    @@gameclock
+end
+
+def self.increment_game_clock(num)
+    i = 0
+    while i < num
+    @@gameclock += 1 
+    i += 1
+    end
 end
 
 def self.all

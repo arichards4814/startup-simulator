@@ -108,13 +108,13 @@ class UI
                 @logic[3]
             end
         elsif input == 5 && menu_items_unlocked[4] == true
-            if @logic[4] == Method || @logic[4].class == Proc
+            if @logic[4].class == Method || @logic[4].class == Proc
                 @logic[4].call
             else
                 @logic[4]
             end
         elsif input == 6 && menu_items_unlocked[5] == true
-            if @logic[5] == Method || @logic[5].class == Proc
+            if @logic[5].class == Method || @logic[5].class == Proc
                 @logic[5].call
             else @logic[5]
                 @logic[5]
@@ -133,7 +133,7 @@ class UI
             self.prompt
         else
             UI.blank_space(5)
-            puts "Option not unlocked!".red
+            puts "Option not available!".red
             UI.blank_space(5)
             self.prompt
         end
@@ -144,6 +144,7 @@ class UI
         #this will puts out the visual
         #then will get input and return it
         #will make sure input is not blank
+        UI.blank_space(5)
         build_border
         if @has_border 
             puts border_visual
@@ -164,11 +165,14 @@ class UI
                 puts ele
             end
         end
+        # get input from player
         input = gets.chomp
         if input == "back" || input == "quit" || input == "h" || input == "help"||input == "-h"
         else
             input = input.to_i
         end
+        
+        # make decision using that input about what method to run
         get_input(input)
         if @response
             puts @response
@@ -238,6 +242,24 @@ class UI
         puts LINE_MEDIUM
         return gets.chomp
     end
+
+    def unlock_menu(num)
+        ##takes 1 - 6 (or how ever many items there are and unlocks that choice)
+        if num == 1
+            menu_items_unlocked[0] = true
+        elsif num == 2
+            menu_items_unlocked[1] = true
+        elsif num == 3  
+            menu_items_unlocked[2] = true
+        elsif num == 4
+            menu_items_unlocked[3] = true
+        elsif num == 5
+            menu_items_unlocked[4] = true
+        elsif num == 6
+            menu_items_unlocked[5] = true
+        end
+    end
+
 
     ## Added specifically for Startup Simulator ## Not included in Tiny Game Engine ##
     ## should use a module for this and include these????

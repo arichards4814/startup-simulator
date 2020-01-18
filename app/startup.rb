@@ -108,12 +108,69 @@ def weekly_payroll_deducted(week)
         @employees.each do |employee|
             employee.morale -= 2
         end
-        if employees.count > 1
+        if employees.count >= 1
         GameEvent.new(nil, week, "Your employee(s) have not been paid... their morale has dropped tremendously.", "red")
         else
-        GameEvent.new(nil, week, "Your employee has not been paid... their morale has dropped tremendously.", "red")
+        GameEvent.new(nil, week, "You've been eating ramen for quite a bit of time now... you should probably raise some money.", "red")
         end
     end
+end
+
+def weekly_products_sold(week)
+
+    total_revenue = 0
+    recognition = self.recognition
+    num_of_sales_people = 0
+
+    self.employees.each do |employee|
+        if employee.job == "Sales"
+            num_of_sales_people += 1
+        end
+    end
+
+    self.products.each do |product|
+        copies_sold = num_of_sales_people + recognition + product.product_strength
+        copies_sold = copies_sold * rand(30..65)
+        total_revenue = total_revenue + (product.price * copies_sold)
+
+        GameEvent.new(nil, week, "#{product.name} has sold #{copies_sold} copies at $#{product.price}.")
+    end
+
+    GameEvent.new(nil, week, "You generated $#{total_revenue} in revenue.")
+    @funds = @funds + total_revenue
+
+end
+
+def hired_employee_total_skill
+    total_skill = 0
+    employees.each do |employee|
+        total_skill = total_skill + employee.skill_level
+    end
+    total_skill
+end
+
+def list_employees
+    final_output = ""
+    if employees.count == 0
+        final_output = "\n                You have not hired any employees. \n      ".blue
+    else
+        employees.each do |employee|
+            final_output = final_output + "___________________________________________________________\n   Name: #{employee.name}    |   Job: #{employee.job}  |   Skill: #{employee.skill_level} \n  Salary: #{employee.salary}  |  Morale: #{employee.morale}    |  Personality: #{employee.personality}\n___________________________________________________________ \n  "
+        end
+    end
+    final_output
+end
+
+def list_products
+    final_output = ""
+    if products.count == 0
+        final_output = "\n                You have not built any products. \n     ".blue
+    else
+        products.each do |product|
+            final_output = final_output + "___________________________________________________________\n   Name: #{product.name}    |   Product Strength: #{product.product_strength}  |   Status: #{product.status} \n  Price: $#{product.price} \n___________________________________________________________ \n  "
+        end
+    end
+    final_output
 end
 
 
