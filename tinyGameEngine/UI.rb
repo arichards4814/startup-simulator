@@ -203,20 +203,6 @@ class UI
         gets.chomp
     end
 
-    def self.ask_for_enter
-        puts ("[Press enter to continue...]")
-        gets.chomp
-    end
-
-    def self.blank_space(int)
-        i = 0
-
-        while i < int
-            puts ""
-            i += 1
-        end
-    end
-
     def build_border
         if @border_type == "dash-sm" || @border_type == "dash_sm"
             @border_visual = DASH_SHORT
@@ -230,17 +216,15 @@ class UI
             @border_visual = LINE_CARROT_MEDIUM
         elsif @border_type == "carrot-lg" || @border_type == "carrot_lg"
             @border_visual = LINE_CARROT_LONG
+        elsif @border_type == "squiggles-sm" || @border_type == "squiggles-sm"
+            @border_visual = LINE_SQUIGGLES_SHORT
+        elsif @border_type == "squiggles-md" || @border_type == "squiggles_md"
+            @border_visual = LINE_SQUIGGLES_MEDIUM
+        elsif @border_type == "squiggles-lg" || @border_type == "squiggles_lg"
+            @border_visual = LINE_SQUIGGLES_LONG
         else 
-            @border_visual = LINE_MEDIUM
+            @border_visual = LINE_MEDIUM 
         end
-    end
-
-    def self.simple_question(question)
-        ## prompts a question and returns the input
-        puts LINE_MEDIUM
-        puts question
-        puts LINE_MEDIUM
-        return gets.chomp
     end
 
     def unlock_menu(num)
@@ -260,6 +244,27 @@ class UI
         end
     end
 
+    def self.simple_question(question)
+        ## prompts a question and returns the input
+        puts LINE_MEDIUM
+        puts question
+        puts LINE_MEDIUM
+        return gets.chomp
+    end
+
+    def self.ask_for_enter
+        puts ("[Press enter to continue...]")
+        gets.chomp
+    end
+
+    def self.blank_space(int)
+        i = 0
+
+        while i < int
+            puts ""
+            i += 1
+        end
+    end
 
     ## Added specifically for Startup Simulator ## Not included in Tiny Game Engine ##
     ## should use a module for this and include these????

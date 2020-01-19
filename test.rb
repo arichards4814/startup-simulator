@@ -43,30 +43,31 @@ our_startup.hire_employee(employ4, 1)
 
 # a.update_gamestate
 # b.update_gamestate
-# x += 1
+# # x += 1
+# # end
+
+# new_prod_name = generate_product_name(ARTICLE, NOUN, VERB_W_ER).split.map(&:capitalize)*' '
+# puts new_prod_name
+
+# def build_product_loop(current_week, num_of_weeks_to_build, product_name)
+#     product_object = Product.new(product_name)
+#     i = 0
+
+#     while i < num_of_weeks_to_build
+
+#         UI.announce("Week: #{current_week + i} \n               Your new product #{product_name} is being built")
+#         i += 1 
+#     end
+#     product_object.status = "built"
+
+#     UI.announce("CONGRATULATIONS #{product_name} HAS BEEN BUILT!!", "green")
+
+#     ## will return the new number of weeks that we're on
+#     return current_week + num_of_weeks_to_build
 # end
 
-new_prod_name = generate_product_name(ARTICLE, NOUN, VERB_W_ER).split.map(&:capitalize)*' '
-puts new_prod_name
-
-def build_product_loop(current_week, num_of_weeks_to_build, product_name)
-    product_object = Product.new(product_name)
-    i = 0
-
-    while i < num_of_weeks_to_build
-
-        UI.announce("Week: #{current_week + i} \n               Your new product #{product_name} is being built")
-        i += 1 
-    end
-    product_object.status = "built"
-
-    UI.announce("CONGRATULATIONS #{product_name} HAS BEEN BUILT!!", "green")
-
-    ## will return the new number of weeks that we're on
-    return current_week + num_of_weeks_to_build
-end
-
-build_product_loop(3, 3, new_prod_name)
+# build_product_loop(3, 3, new_prod_name)
+puts HELP
 
 binding.pry
 

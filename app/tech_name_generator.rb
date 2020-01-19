@@ -160,7 +160,29 @@ module ProductNameVariables
 "devourer",
 "hypnotizer"]
 
+
+
+HELP = "HELP MENU \n\n
+Thank you for playing Startup Simulator created with\n
+tools from the Tiny Game Engine. I built the Tiny Game\n
+Engine to give ruby developers an easy way to build a\n
+menu system and game event system for your game - Andrew\n\n
+------------STARTUP SIMULATOR TIPS AND TRICKS-----------\n
+To go back to the previous menu type 'back' and press enter\n
+\n 
+To quit the game entirely type 'quit' in a menu and press enter\n
+\n 
+Every time you raise money you give up equity in the company for\n
+a dollar value. The more you own at the end of the game the higher\n
+your score.\n\n 
+By raising your 'Recognition' you unlock the ability to raise money\n
+from more investors.\n\n
+Your employee personalities matter. Try to combine or diversify to \n
+and see what happens."
+
+
 end
+
 
 def generate_product_name(article, noun, verb)
     article[rand(article.count)] + " " + noun[rand(noun.count)] + " " + verb[rand(verb.count)]
@@ -170,4 +192,6 @@ def generate_name(slot_1, slot_2, slot_3)
     slot_1[rand(slot_1.count)] + " " + slot_2[rand(slot_2.count)] + " " +
     slot_3[rand(slot_3.count)]
 end
+
+
 

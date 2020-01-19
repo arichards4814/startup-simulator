@@ -61,6 +61,8 @@ Create by Andrew Richards - github: arichards4814
 - [x]`.simple_question` - takes a parameter, the question, and puts it returning the gets.chomp response
 - 
 
+# USING THE TINY GAME ENGINE:
+
 ### Pass the current strings as a parameter in #border_type to create that border. #has_border must be set to true for border to show
 
 * border types - dash-sm, dash-md, dash-lg, line-sm, line-md, line-lg, 
@@ -71,7 +73,15 @@ Create by Andrew Richards - github: arichards4814
 
 
 
-# Menu Instances
+
+
+
+# STARTUP SIMULATOR FEATURES
+
+## TECH NAME GENERATOR (tech_name_generator.rb)
+Generates a random tech name for your company
+
+## Menu Tree
 main_menu
     raise_money
     hire_employees
@@ -84,32 +94,34 @@ main_menu
 
 
 
-STARTUP SIMULATOR FEATURES
 
-# TECH NAME GENERATOR (tech_name_generator.rb)
-Generates a random tech name for your company
+# TINY GAME ENGINE (TGE) FEATURES
 
-TINY GAME ENGINE (TGE) FEATURES
-
-# UI Creator (UI.rb)
+## UI Creator (UI.rb)
 Allows you to build out robust, styled menus. 
 - eventually want to be able to create logos with ASCII text
 
-# Game Events (gameevent.rb)
+## Game Events (gameevent.rb)
 - GameEvent class that stores game events. 
+- Class method that puts out your game events on each turn.
 
 
-# (Eventually) Gameobject Class (gameobject.rb)
+## (Eventually) Gameobject Class (gameobject.rb)
 Will allow you to build player characters, enemy characters.
 
-# (Eventually) Story Class (story.rb)
+## (Eventually) Story Class (story.rb)
 Will allow you to build stories with decision making branches that effect the direction of the story.
 
+## Additions - Tiny Game Engine
+
+- [] add help menu
+- [] custom error handling
+- [] ability to have an odd number of menu items
+- [] ability to have unlimited number of menu items
+- [] additional borders included
+- [] instructions in the readme
 
 
 
 
-# BUGS
-
-ADAM FOUND THIS BUG - THE EMPLOYEES ARE NOT HIRING THE RIGHT PEOPLE WHEN YOU CHOOSE
 
