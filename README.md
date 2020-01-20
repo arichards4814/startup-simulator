@@ -56,10 +56,12 @@ Create by Andrew Richards - github: arichards4814
 - [x]`#has_border` - boolean, set this as true to give a top and bottom border to your menu
 - [x]`#border_type` - takes a parameter, the border type and creates that border in your menu.. *see below for details.
 - [x]`.announce` - puts an announcement with 2 line borders and press enter to continue
+- [x]`#build_border` - method used to build the border for the menu internally.
 - [x]`.ask_for_enter` - puts "[press enter to continue]"
 - [x]`.blank_space` - takes a parameter for the number of blank lines you want to puts. then puts that many lines.
 - [x]`.simple_question` - takes a parameter, the question, and puts it returning the gets.chomp response
-- 
+- [x]`#unlock_menu` - takes a number 1 - 6 to turn the menu_items_unlocked element to true, unlocking a menu item.
+- [x]`#menu_items_unlocked` - takes an array of booleans, if an element is true, the corresponding menu item is shown. If not it is shown as question marks.
 
 # USING THE TINY GAME ENGINE:
 
@@ -69,6 +71,15 @@ Create by Andrew Richards - github: arichards4814
 ### Try using these class methods to puts out a title card: 
 * UI.billboard(string)
 * UI.announce(string)
+
+### To simply ask for enter, use the '.ask_for_enter' class method
+* UI.ask_for_enter
+
+### To ask a question and return its response, use '.simple_question' class method
+* UI.simple_question(string)
+
+### to add space use the '.blank_space' class method passing a number of blank lines as a parameter
+* UI.blank_space(integer)
 
 
 
