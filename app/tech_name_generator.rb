@@ -162,23 +162,36 @@ module ProductNameVariables
 
 
 
-HELP = "HELP MENU \n\n
+HELP = "--------------------------------------------------------
+\n
+
+================================================================\n
+---------------------------HELP MENU-----------------------------\n
+================================================================\n\n\n
 Thank you for playing Startup Simulator created with\n
-tools from the Tiny Game Engine. I built the Tiny Game\n
-Engine to give ruby developers an easy way to build a\n
-menu system and game event system for your game - Andrew\n\n
-------------STARTUP SIMULATOR TIPS AND TRICKS-----------\n
-To go back to the previous menu type 'back' and press enter\n
-\n 
-To quit the game entirely type 'quit' in a menu and press enter\n
-\n 
-Every time you raise money you give up equity in the company for\n
-a dollar value. The more you own at the end of the game the higher\n
-your score.\n\n 
-By raising your 'Recognition' you unlock the ability to raise money\n
-from more investors.\n\n
-Your employee personalities matter. Try to combine or diversify to \n
-and see what happens."
+tools from the Tiny Game Engine. Tiny Game Engine was built to \n
+give ruby developers an easy way to build a menu system and game\n
+event system for your game! - Andrew\n\n
+================================================================\n
+---------------------NAVIGATING THE MENUS-----------------------\n
+================================================================\n
+[back] - To go back to the previous menu type 'back' and press\n
+enter.\n 
+[quit] - To quit the game entirely type 'quit' in a menu and press \n
+enter.\n 
+[1-9] - choose a menu item by typing the number and pressing enter\n
+
+================================================================\n
+---------------STARTUP SIMULATOR TIPS AND TRICKS--------------\n
+================================================================\n
+Every time you raise money you give up equity in the company \n
+for a dollar value. The more you own at the end of the game the \n
+higher your score.\n\n 
+By raising your 'Recognition' you unlock the ability to raise \n
+money from more investors.\n\n
+Your employee personalities matter. Try to combine or diversify \n
+and see what happens.\n
+-----------------------------------------------------------"
 
 
 end

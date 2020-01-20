@@ -67,7 +67,7 @@ our_startup.hire_employee(employ4, 1)
 # end
 
 # build_product_loop(3, 3, new_prod_name)
-puts HELP
+UI.billboard("COMPANY PANEL")
 
 binding.pry
 

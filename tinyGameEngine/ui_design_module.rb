@@ -38,4 +38,6 @@ INDENT_MEDIUM = "                   "
 INDENT_LARGE = "                                        "
 
 
+EQUALS_MEDIUM = "========================================================"
+
 end

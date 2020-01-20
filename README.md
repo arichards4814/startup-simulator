@@ -65,10 +65,12 @@ Create by Andrew Richards - github: arichards4814
 
 ### Pass the current strings as a parameter in #border_type to create that border. #has_border must be set to true for border to show
 
-* border types - dash-sm, dash-md, dash-lg, line-sm, line-md, line-lg, 
-                carrot-sm, carrot-md, carrot-lg, squiggles-sm, squiggles-md
-                squiggles-lg
+* border types - dash-sm, dash-md, dash-lg, line-sm, line-md, line-lg, carrot-sm, carrot-md, carrot-lg, squiggles-sm, squiggles-md,squiggles-lg, equals-md
 
+* UI.billboard
+========================================================
+---------------------COMPANY PANEL---------------------
+========================================================
 
 
 
@@ -118,8 +120,13 @@ Will allow you to build stories with decision making branches that effect the di
 - [] custom error handling
 - [] ability to have an odd number of menu items
 - [] ability to have unlimited number of menu items
-- [] additional borders included
+- [x] additional borders included
 - [] instructions in the readme
+- [] metaprogram menu creator, making building menu trees easy.
+
+## Additions - Startup Simulator
+- [] finish 4th menu - view company
+
 
 
 

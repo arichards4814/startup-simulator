@@ -40,7 +40,7 @@ class UI
 
         if menu_items.count == 2 
             puts "   #{menu_items[0]}        #{menu_items[1]} "
-        else 
+        elsif menu_items.count > 2 && menu_items.count % 2 == 0 
             i = 0
             while i < ((menu_items.count / 2))
                 
@@ -57,16 +57,23 @@ class UI
                 puts "   #{left_item}        #{right_item} "
                 i += 1
             end
+        elsif menu_items.count > 2 && !(menu_items.count % 2 == 0)
+            ## need to code this
+
+
         end
     end
 
-    def set_logic(l1, l2 = method(:prompt), l3 = method(:prompt), l4 = method(:prompt), l5 = method(:prompt), l6 = method(:prompt))
+    def set_logic(l1, l2 = method(:prompt), l3 = method(:prompt), l4 = method(:prompt), l5 = method(:prompt), l6 = method(:prompt),l7 = method(:prompt), l8 = method(:prompt), l9 = method(:prompt))
         logic << l1 
         logic << l2
         logic << l3
         logic << l4
         logic << l5
         logic << l6
+        logic << l7
+        logic << l8
+        logic << l9
     end
 
     def get_input(input)
@@ -119,6 +126,24 @@ class UI
             else @logic[5]
                 @logic[5]
             end
+        elsif input == 7 && menu_items_unlocked[6] == true
+            if @logic[6].class == Method || @logic[6].class == Proc
+                @logic[6].call
+            else @logic[6]
+                @logic[6]
+            end   
+        elsif input == 8 && menu_items_unlocked[7] == true
+            if @logic[7].class == Method || @logic[7].class == Proc
+                @logic[7].call
+            else @logic[7]
+                @logic[7]
+            end  
+        elsif input == 9 && menu_items_unlocked[8] == true
+            if @logic[8].class == Method || @logic[8].class == Proc
+                @logic[8].call
+            else @logic[8]
+                @logic[8]
+            end    
         elsif input.to_s == "back"
             if !:parent_menu
                 puts "Cannot go back"
@@ -129,7 +154,9 @@ class UI
         elsif input.to_s == "quit"
             exit
         elsif input.to_s == "h" || input.to_s == "help"||input.to_s == "-h"
-            puts "Type 'quit' to exit. Type 'back' to go back."
+            puts HELP.magenta
+        
+            UI.ask_for_enter
             self.prompt
         else
             UI.blank_space(5)
@@ -216,12 +243,14 @@ class UI
             @border_visual = LINE_CARROT_MEDIUM
         elsif @border_type == "carrot-lg" || @border_type == "carrot_lg"
             @border_visual = LINE_CARROT_LONG
-        elsif @border_type == "squiggles-sm" || @border_type == "squiggles-sm"
+        elsif @border_type == "squiggles-sm" || @border_type == "squiggles_sm"
             @border_visual = LINE_SQUIGGLES_SHORT
         elsif @border_type == "squiggles-md" || @border_type == "squiggles_md"
             @border_visual = LINE_SQUIGGLES_MEDIUM
         elsif @border_type == "squiggles-lg" || @border_type == "squiggles_lg"
             @border_visual = LINE_SQUIGGLES_LONG
+        elsif @border_type == "equals-md" || @border_type == "equals_md"
+            @border_visual = EQUALS_MEDIUM
         else 
             @border_visual = LINE_MEDIUM 
         end
@@ -250,6 +279,31 @@ class UI
         puts question
         puts LINE_MEDIUM
         return gets.chomp
+    end
+
+    def self.billboard(str)
+        total_dashes = 56
+        final_array = []
+        remaining_dashes = total_dashes - str.split(//).count
+        i = 0
+        while i < remaining_dashes / 2 
+        final_array << "-"
+        i += 1
+        end
+
+        str.split(//).each do |letter|
+            final_array << letter
+        end
+
+        j = 0
+        while j < remaining_dashes / 2 
+        final_array << "-"
+        j += 1
+        end
+
+        puts EQUALS_MEDIUM
+        puts final_array.join
+        puts EQUALS_MEDIUM
     end
 
     def self.ask_for_enter
