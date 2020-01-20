@@ -66,9 +66,21 @@ our_startup.hire_employee(employ4, 1)
 #     return current_week + num_of_weeks_to_build
 # end
 
-# build_product_loop(3, 3, new_prod_name)
-UI.billboard("COMPANY PANEL")
-UI.announce("THANKS FOR USING TINY GAME ENGINE")
+# # build_product_loop(3, 3, new_prod_name)
+# UI.billboard("COMPANY PANEL")
+# UI.announce("THANKS FOR USING TINY GAME ENGINE")
+
+    main_menu_ui = UI.new("main_menu_ui")
+    main_menu_ui.menu_items = ["[1] - Try to Raise Capital  ", "[2] - Hire Employees        ", "[3] - Build/Improve Products",
+                            "[4] - View Company", "[5] - View Employees"]
+    main_menu_ui.header = "                               MAIN MENU - Week:"
+    main_menu_ui.body = "         Funds: $ Employees:  Products: "
+    main_menu_ui.has_border = true
+    main_menu_ui.border_type = "dash-lg"
+    main_menu_ui.has_divider = true
+    main_menu_ui.parent_menu = main_menu_ui
+
+    main_menu_ui.prompt
 
 binding.pry
 

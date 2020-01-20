@@ -58,9 +58,29 @@ class UI
                 i += 1
             end
         elsif menu_items.count > 2 && !(menu_items.count % 2 == 0)
-            ## need to code this
-
-
+            ## odd number of menu_items
+             i = 0
+            while i < (((menu_items.count + 1) / 2) - 1)
+                if menu_items_unlocked[i]
+                    left_item = menu_items[i]
+                else 
+                    left_item = "[#{i+1}] - ???????????       "
+                end
+                if menu_items_unlocked[i+(menu_items.count / 2)]
+                    right_item = menu_items[i+(menu_items.count / 2)]
+                else 
+                    right_item = "[#{i+(menu_items.count / 2)+1}] - ???????????"
+                end
+                puts "   #{left_item}        #{right_item} "
+                i += 1
+            end
+                if menu_items_unlocked[-1]
+                    final_item = menu_items[-1]
+                else
+                    final_item = "[#{menu_items.count}] - ???????????"
+                end
+                puts "   #{final_item}"
+            binding.pry
         end
     end
 
