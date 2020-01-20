@@ -64,18 +64,11 @@ Create by Andrew Richards - github: arichards4814
 # USING THE TINY GAME ENGINE:
 
 ### Pass the current strings as a parameter in #border_type to create that border. #has_border must be set to true for border to show
-
 * border types - dash-sm, dash-md, dash-lg, line-sm, line-md, line-lg, carrot-sm, carrot-md, carrot-lg, squiggles-sm, squiggles-md,squiggles-lg, equals-md
 
-* UI.billboard(string) [UI.billboard("COMPANY PANEL")] will puts the following:
-========================================================
----------------------COMPANY PANEL---------------------
-========================================================
-
-* UI.announce(string) [UI.announce("THANKS FOR USING TINY GAME ENGINE")] will puts the following
-_________________________________________________
-THANKS FOR USING TINY GAME ENGINE
-_________________________________________________
+### Try using these class methods to puts out a title card: 
+* UI.billboard(string)
+* UI.announce(string)
 
 
 
