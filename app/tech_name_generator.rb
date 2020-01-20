@@ -195,6 +195,9 @@ and see what happens.\n
 faster. \n
 +Your employee skill will create products with better product \n
 strength.
++The more programemrs you have, the faster your products will be \n
+built.
++The more sales people you have, the more products you will sell.
 -----------------------------------------------------------"
 
 

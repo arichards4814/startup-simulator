@@ -2,7 +2,7 @@ require_relative '../config/environment.rb'
 
 class Startup
 
-attr_accessor :funds, :recognition, :name, :employees, :products, :player_name, :fam_trys
+attr_accessor :funds, :recognition, :name, :employees, :products, :player_name, :fam_trys, :percentage_owned, :total_game_score
 
 @@all = []
 def initialize(name)
@@ -12,11 +12,16 @@ def initialize(name)
     @employees = []
     @products = []
     @fam_trys = 0
+    @percentage_owned = 100
     @@all << self
 end
 
 def self.all
     @@all
+end
+
+def sell_shares(num)
+    @percentage_owned =  @percentage_owned - num
 end
 
 # def set_name(name)
@@ -46,6 +51,9 @@ end
 def hire_employee(employee, week)
     @employees << employee
     employee.status = "hired"
+    @employees.each do |employee|
+        employee.increase_morale(1, week)
+    end
     ##create game event... 
     GameEvent.new(employee, week, " has been hired!")
 end
@@ -71,20 +79,32 @@ end
 def raise_capital_friends_and_fam(week)
     UI.blank_space(7)
     if @fam_trys == 0
-        UI.announce("Your friend Gary believes in you... he gives you $5000!".green)
-        self.increase_funds(5000)
+        UI.blank_space(5)
+        UI.announce("Your friend Gary believes in you... he gives you $2000!".green)
+        self.increase_funds(2000)
+        UI.blank_space(5)
         UI.announce("Your Uncle Steve thinks your idea will never work... he tells you to get lost!".red)
-        UI.announce("Your Cousin Darius has your back. He gives you $15000!".green)
-        self.increase_funds(15000)
-        GameEvent.new(nil, week, "You've raised $20000!")
+        UI.blank_space(5)
+        UI.announce("Your Cousin Darius has your back. He gives you $6000!".green)
+        self.increase_funds(6000)
+        self.sell_shares(5)
+        GameEvent.new(nil, week, "You've sold off 5% of your company.")
+        GameEvent.new(nil, week, "You've raised $8000!")
         @fam_trys += 1
     elsif @fam_trys == 1
+        UI.blank_space(5)
         UI.announce("Your friend Bill doesn't have anything to give you! But he shares your company on the internet!".green)
+        UI.blank_space(5)
         self.increase_recognition(1)
+        UI.ask_for_enter
+        UI.blank_space(5)
         UI.announce("Your friend Harvey doesn't like you... but he gives you $5000 anyway!".green)
         self.increase_funds(5000)
+        UI.blank_space(5)
         UI.announce("Your Uncle Boris recently came into some money. He gives you $5000!".green)
         self.increase_funds(5000)
+        self.sell_shares(5)
+        GameEvent.new(nil, week, "You've sold off 5% of your company.")
         GameEvent.new(nil, week, "You've raised $10000!")
         GameEvent.new(nil, week, "Your recognition has been increased by 1 point!")
         @fam_trys += 1
@@ -96,10 +116,40 @@ def raise_capital_friends_and_fam(week)
     end
 end
 
+def product_strength_total
+    prod_str_tot = 0
+    @products.each do |product|
+        prod_str_tot = product.product_strength + prod_str_tot
+    end
+    prod_str_tot
+end
 
-def raise_capital(level)
 
+def raise_capital(level, week)
 
+# if 2 3 4 5 6
+
+if level == 2
+    raised = product_strength_total * 10000
+    self.increase_funds(raised)
+    GameEvent.new(nil, week, "You have raised $#{raised} from local investors!", "green")
+elsif level == 3
+    raised = product_strength_total * 50000
+    self.increase_funds(raised)
+    GameEvent.new(nil, week, "You have raised $#{raised} from regional investors!", "green")
+elsif level == 4
+    raised = product_strength_total * 100000
+    self.increase_funds(raised)
+    GameEvent.new(nil, week, "You have raised $#{raised} from Silicone Valley Gurus!", "green")
+elsif level == 5
+    self.increase_funds(raised)
+    raised = product_strength_total * 500000
+    GameEvent.new(nil, week, "You have raised $#{raised} from Elite Venture Capitalists!", "green")
+elsif level == 6
+    self.increase_funds(raised)
+    raised = product_strength_total * 1000000
+    GameEvent.new(nil, week, "You have raised $#{raised} from your public offering!", "green")
+end
 
 
 end
@@ -175,7 +225,7 @@ def list_products
         final_output = "\n                You have not built any products. \n     ".blue
     else
         products.each do |product|
-            final_output = final_output + "___________________________________________________________\n   Name: #{product.name}    |   Product Strength: #{product.product_strength}  |   Status: #{product.status} \n  Price: $#{product.price} \n___________________________________________________________ \n  "
+            final_output = final_output + "___________________________________________________________\n   Name: #{product.name}    |   Product Strength: #{product.product_strength}  \n    Price: $#{product.price} \n___________________________________________________________ \n  "
         end
     end
     final_output
@@ -205,15 +255,23 @@ def company_info
     products_str = Startup.excellent_or_severe(num2)
     team_skill = Startup.excellent_or_severe(hired_employee_total_skill)
     payroll = 0
+    percentage_owned = @percentage_owned
     @employees.each do |employee|
             payroll = payroll + (employee.salary / 52)
     end 
-
+    puts " "
+    puts "                    #{self.name}".magenta
+    puts "                    CEO: #{self.player_name}".blue
+    puts "                    ----------------------------------------"
     puts "                    Team Morale: #{morale}"
     puts "                    Recognition: #{recognition}"
     puts "                    Products Strength: #{products_str}"
     puts "                    Team Expertise: #{team_skill}"
     puts "                    Payroll: $#{payroll} per week"
+    puts "                    Percentage Owned: #{@percentage_owned}%"
+    puts "                    ----------------------------------------"
+    puts "                    Total Game Score: "
+    
     # puts "Team Chemistry: "
     
 end
@@ -248,6 +306,33 @@ def self.recognition_excellent_etc(num)
     elsif num == 0
         "N/A".yellow
     end
+end
+
+def personality_bonus
+    ## not finished
+    personalities = @employees.map do |employee|
+        employee.personality
+    end
+    unique_personalities = []
+
+    personalities.each do |personality|
+        if !unique_personalities.include?(personality)
+            unique_personalities << personality
+        end
+    end
+
+    if personalities.count >= 3
+        unique_personalities.each do |u_personality|
+            personalities.each do |personality|
+                u_personality == personality
+            end
+        end
+    end
+end
+
+def calculate_total_game_score
+    # will add up the total game score
+    # multiply by the percentage owned
 end
 
 end

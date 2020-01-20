@@ -71,8 +71,16 @@ def begin_game
     hire_employees_ui.has_divider = true
     hire_employees_ui.parent_menu = main_menu_ui
 
-    
-    
+
+    improve_existing_emp_ui = UI.new("improve_exiting_emp_ui")
+    improve_existing_emp_ui.menu_items = ["[1] - Train Employees", "[2] - Company Outing"]
+    improve_existing_emp_ui.header = "                     HIRE EMPLOYEES - Week: #{week}"
+    improve_existing_emp_ui.body = "            #{our_startup.name}\n Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}"
+    improve_existing_emp_ui.has_border = true
+    improve_existing_emp_ui.border_type = "dash-lg"
+    improve_existing_emp_ui.has_divider = true
+    improve_existing_emp_ui.parent_menu = hire_employees_ui
+
     ## Build/Improve Products menu ##
 
 
@@ -85,8 +93,14 @@ def begin_game
     build_improve_prod_ui.has_divider = true
     build_improve_prod_ui.parent_menu = main_menu_ui
 
-
-
+    improve_existing_prod_ui = UI.new("improve_existing_prod_ui")
+    improve_existing_prod_ui.menu_items = ["[1] - Work On Product", ""]
+    improve_existing_prod_ui.header = "                     BUILD / IMPROVE PRODUCTS - Week: #{week}"
+    improve_existing_prod_ui.body = "            #{our_startup.name}\n Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}"
+    improve_existing_prod_ui.has_border = true
+    improve_existing_prod_ui.border_type = "dash-lg"
+    improve_existing_prod_ui.has_divider = true
+    improve_existing_prod_ui.parent_menu = build_improve_prod_ui
     ## View Company ##
 
 
@@ -151,6 +165,17 @@ def begin_game
     create_product_ui.border_type = "dash-lg"
     create_product_ui.menu_items_unlocked = [true, false, false, false]
     
+
+
+
+
+
+
+
+
+
+
+
     ## Build Game Events Here
     #GameEvent.new(nil, 3, "Testing third week game event feature.")
 
@@ -168,13 +193,18 @@ def begin_game
     emp1 = lambda {our_startup.hire_employee(emp[0],week)}
     emp2 = lambda {our_startup.hire_employee(emp[1],week)}
     emp3 = lambda {our_startup.hire_employee(emp[2],week)}
-    hire_employees_ui.set_logic(choose_employee_ui.method(:prompt))
+    hire_employees_ui.set_logic(choose_employee_ui.method(:prompt), improve_existing_emp_ui.method(:prompt))
     choose_employee_ui.set_logic(emp1, emp2, emp3)
 
     build_improve_prod_ui.set_logic(create_product_ui.method(:prompt))
 
     raise_f_and_f = lambda {our_startup.raise_capital_friends_and_fam(week)}
-    raise_capital_ui.set_logic(raise_f_and_f)
+    raise_local = lambda {our_startup.raise_capital(2, week)}
+    raise_3 = lambda {our_startup.raise_capital(3, week)}
+    raise_4 = lambda {our_startup.raise_capital(4, week)}
+    raise_5 = lambda {our_startup.raise_capital(5, week)}
+    raise_6 = lambda {our_startup.raise_capital(6, week)}
+    raise_capital_ui.set_logic(raise_f_and_f, raise_local, raise_3, raise_4, raise_5, raise_6)
 
    
 
@@ -207,7 +237,7 @@ def begin_game
 
 #########GAME BEGINS HERE####################
 
-    UI.announce("WELCOME TO STARTUP SIMULATOR!!!")
+    UI.billboard("WELCOME TO STARTUP SIMULATOR!!!")
     UI.blank_space(5)
 
     our_startup.player_name = UI.simple_question("What is your name?")
@@ -231,8 +261,13 @@ def begin_game
     UI.announce("Congrats! #{our_startup.name} has been created","blue")
     UI.blank_space(5)
     UI.announce("Time to raise some capital and get this thing started!","green")
-    i = 0
+    UI.blank_space(5)
+    UI.announce("TIP: At any time while in the menus:\n
+                type [quit] to exit the game\n
+                type [help] for the help menu\n
+                type [back] to go to previous menu")
 
+    i = 0
     ######Game Loop######
     while i < 300
         week = GameEvent.gameclock
