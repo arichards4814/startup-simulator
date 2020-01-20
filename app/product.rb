@@ -16,6 +16,18 @@ def self.all
     @@all
 end
 
+def improve_product(num, current_week)
+    ## FIX THIS!!! PRODUCT STRENGTH CAN BE OVER 10
+    @product_strength += num
+    if @product_strength > 10
+        @product_strength = 10
+        GameEvent.new(nil,current_week, "Your product #{self.name}'s is perfect it cannot be improved anymore.")
+    else
+        GameEvent.new(nil,current_week, "Your product #{self.name}'s strength has increased.", "green")
+    end
+
+end
+
 
 def self.build_product_loop(current_week, num_of_weeks_to_build, product_name, startup_object)
     product_object = Product.new(product_name)
@@ -26,8 +38,10 @@ def self.build_product_loop(current_week, num_of_weeks_to_build, product_name, s
         UI.billboard("Week: #{current_week + i}: Your new product #{product_name} is being built")
         startup_object.weekly_payroll_deducted(current_week + i)
         startup_object.weekly_products_sold(current_week + i)
-        startup_object.employees.each do |employee|
-            employee.decrease_morale(1, current_week + i)
+        if i >= 3
+            startup_object.employees.each do |employee|
+                employee.decrease_morale(1, current_week + i)
+            end
         end
         GameEvent.weeks_summary(current_week + i)
         UI.ask_for_enter

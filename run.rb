@@ -92,10 +92,11 @@ def begin_game
     build_improve_prod_ui.border_type = "dash-lg"
     build_improve_prod_ui.has_divider = true
     build_improve_prod_ui.parent_menu = main_menu_ui
+    build_improve_prod_ui.menu_items_unlocked = [true, false]
 
     improve_existing_prod_ui = UI.new("improve_existing_prod_ui")
-    improve_existing_prod_ui.menu_items = ["[1] - Work On Product", ""]
-    improve_existing_prod_ui.header = "                     BUILD / IMPROVE PRODUCTS - Week: #{week}"
+    improve_existing_prod_ui.menu_items = ["[1] - Work On Existing Products", ""]
+    improve_existing_prod_ui.header = "                     IMPROVE PRODUCTS - Week: #{week}"
     improve_existing_prod_ui.body = "            #{our_startup.name}\n Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}"
     improve_existing_prod_ui.has_border = true
     improve_existing_prod_ui.border_type = "dash-lg"
@@ -170,12 +171,6 @@ def begin_game
 
 
 
-
-
-
-
-
-
     ## Build Game Events Here
     #GameEvent.new(nil, 3, "Testing third week game event feature.")
 
@@ -196,7 +191,8 @@ def begin_game
     hire_employees_ui.set_logic(choose_employee_ui.method(:prompt), improve_existing_emp_ui.method(:prompt))
     choose_employee_ui.set_logic(emp1, emp2, emp3)
 
-    build_improve_prod_ui.set_logic(create_product_ui.method(:prompt))
+
+    build_improve_prod_ui.set_logic(create_product_ui.method(:prompt), improve_existing_prod_ui.method(:prompt))
 
     raise_f_and_f = lambda {our_startup.raise_capital_friends_and_fam(week)}
     raise_local = lambda {our_startup.raise_capital(2, week)}
@@ -206,6 +202,13 @@ def begin_game
     raise_6 = lambda {our_startup.raise_capital(6, week)}
     raise_capital_ui.set_logic(raise_f_and_f, raise_local, raise_3, raise_4, raise_5, raise_6)
 
+    #improve employees logic
+    imp_morale = lambda {our_startup.improve_employees_morale(1, week)}
+    imp_skill = lambda {our_startup.improve_employees_skill(1, week)}
+    improve_existing_emp_ui.set_logic(imp_skill,imp_morale)
+    #improve products logic
+    imp_product = lambda {our_startup.improve_products(1, week)}
+    improve_existing_prod_ui.set_logic(imp_product)
    
 
     ## CREATE GAME TRIGGERS HERE # Must regenerate in the game loop
@@ -228,6 +231,13 @@ def begin_game
     cpu2 = GameTrigger.new(our_startup.hired_employee_total_skill, ">", 4, unlock_create_p_menu_2)
     cpu3 = GameTrigger.new(our_startup.hired_employee_total_skill, ">", 7, unlock_create_p_menu_3)
     cpu4 = GameTrigger.new(our_startup.hired_employee_total_skill, ">", 10, unlock_create_p_menu_4)
+
+    unlock_imp_prod_menu = lambda {build_improve_prod_ui.unlock_menu(2)}
+    ipm2 = GameTrigger.new(our_startup.products.count, ">", 0, unlock_imp_prod_menu)
+
+
+    unlock_imp_emp_menu = lambda {improve_existing_emp_ui.unlock_menu(2)}
+    iee2 = GameTrigger.new(our_startup.employees.count, ">", 0, unlock_imp_emp_menu)
 
     # GameTrigger.new(our_startup.products.count, "==", 1, #run news story) #trigger type needs to be a run once.
 
@@ -286,6 +296,12 @@ def begin_game
     view_employees_ui.body = "            #{our_startup.name}\n                    Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}\n" + our_startup.list_employees
     view_products_ui.header = "                     PRODUCTS PANEL - Week: #{week}"
     view_products_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}\n" + our_startup.list_products
+    improve_existing_prod_ui.header = "                     IMPROVE PRODUCTS - Week: #{week}".blue
+    improve_existing_prod_ui.body = "                        #{our_startup.name}\n               Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    improve_existing_emp_ui.header = "                     IMPROVE EMPLOYEES - Week: #{week}".blue
+    improve_existing_emp_ui.body = "                        #{our_startup.name}\n               Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    
+
     ##regenerate employee choices...
     emp = Employee.three_emps
     a = lambda {Employee.three_emps}
@@ -296,6 +312,14 @@ def begin_game
     choose_employee_ui.header = "                           CHOOSE EMPLOYEES - Week: #{week}"
     hire_employees_ui.set_logic(choose_employee_ui.method(:prompt))
     choose_employee_ui.set_logic(emp1, emp2, emp3)
+
+    #improve employees logic
+    imp_morale = lambda {our_startup.improve_employees_morale(1, week)}
+    imp_skill = lambda {our_startup.improve_employees_skill(1, week)}
+    improve_existing_emp_ui.set_logic(imp_skill,imp_morale)
+    #improve products logic
+    imp_product = lambda {our_startup.improve_products(1, week)}
+    improve_existing_prod_ui.set_logic(imp_product)
 
     ##regenerate product choice calculations...
 
@@ -313,9 +337,9 @@ def begin_game
             time_multiplier = 1
         end
         pt1 = lambda {Product.build_product_loop(week, 1 * time_multiplier, new_prod_name, our_startup)}
-        pt2 = lambda {Product.build_product_loop(week, 5 * time_multiplier, new_prod_name, our_startup)}
-        pt3 = lambda {Product.build_product_loop(week, 10 * time_multiplier, new_prod_name, our_startup)}
-        pt4 = lambda {Product.build_product_loop(week, 20 * time_multiplier, new_prod_name, our_startup)}
+        pt2 = lambda {Product.build_product_loop(week, 3 * time_multiplier, new_prod_name, our_startup)}
+        pt3 = lambda {Product.build_product_loop(week, 6 * time_multiplier, new_prod_name, our_startup)}
+        pt4 = lambda {Product.build_product_loop(week, 9 * time_multiplier, new_prod_name, our_startup)}
         create_product_ui.set_logic(pt1, pt2, pt3, pt4)
 
 
@@ -353,7 +377,10 @@ def begin_game
     cpu2.update_gamestate
     cpu3.update_gamestate
     cpu3.update_gamestate
-
+    ipm2.check_variable = our_startup.products.count
+    ipm2.update_gamestate
+    iee2.check_variable = our_startup.employees.count
+    iee2.update_gamestate
 
 
     week = GameEvent.gameclock

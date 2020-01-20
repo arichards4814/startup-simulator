@@ -132,22 +132,32 @@ def raise_capital(level, week)
 if level == 2
     raised = product_strength_total * 10000
     self.increase_funds(raised)
+    self.sell_shares(5)
+    GameEvent.new(nil, week, "You've sold off 5% of your company.")
     GameEvent.new(nil, week, "You have raised $#{raised} from local investors!", "green")
 elsif level == 3
     raised = product_strength_total * 50000
     self.increase_funds(raised)
+    self.sell_shares(5)
+    GameEvent.new(nil, week, "You've sold off 5% of your company.")
     GameEvent.new(nil, week, "You have raised $#{raised} from regional investors!", "green")
 elsif level == 4
     raised = product_strength_total * 100000
     self.increase_funds(raised)
+    self.sell_shares(5)
+    GameEvent.new(nil, week, "You've sold off 5% of your company.")
     GameEvent.new(nil, week, "You have raised $#{raised} from Silicone Valley Gurus!", "green")
 elsif level == 5
-    self.increase_funds(raised)
     raised = product_strength_total * 500000
+    self.increase_funds(raised)
+    self.sell_shares(5)
+    GameEvent.new(nil, week, "You've sold off 5% of your company.")
     GameEvent.new(nil, week, "You have raised $#{raised} from Elite Venture Capitalists!", "green")
 elsif level == 6
-    self.increase_funds(raised)
     raised = product_strength_total * 1000000
+    self.increase_funds(raised)
+    self.sell_shares(5)
+    GameEvent.new(nil, week, "You've sold off 5% of your company.")
     GameEvent.new(nil, week, "You have raised $#{raised} from your public offering!", "green")
 end
 
@@ -260,17 +270,17 @@ def company_info
             payroll = payroll + (employee.salary / 52)
     end 
     puts " "
-    puts "                    #{self.name}".magenta
-    puts "                    CEO: #{self.player_name}".blue
-    puts "                    ----------------------------------------"
-    puts "                    Team Morale: #{morale}"
-    puts "                    Recognition: #{recognition}"
-    puts "                    Products Strength: #{products_str}"
-    puts "                    Team Expertise: #{team_skill}"
-    puts "                    Payroll: $#{payroll} per week"
-    puts "                    Percentage Owned: #{@percentage_owned}%"
-    puts "                    ----------------------------------------"
-    puts "                    Total Game Score: "
+    puts "                #{self.name}".magenta
+    puts "                CEO: #{self.player_name}".blue
+    puts "                -------------------------------------"
+    puts "                Team Morale: #{morale}"
+    puts "                Recognition: #{recognition}"
+    puts "                Products Strength: #{products_str}"
+    puts "                Team Expertise: #{team_skill}"
+    puts "                Payroll: $#{payroll} per week"
+    puts "                Percentage Owned: #{@percentage_owned}%"
+    puts "                -------------------------------------"
+    puts "                Total Game Score: #{calculate_total_game_score}" 
     
     # puts "Team Chemistry: "
     
@@ -287,8 +297,10 @@ def self.excellent_or_severe(num)
         read = "Bad".red
     elsif num == 2 || num == 1
         read ="Severe".red
-    elsif num == 0
-        "N/A".yellow
+    # elsif num == 0 && @employees
+    #     "N/A".yellow
+    elsif num == 0 
+        "Very Severe".red
     end
 end
 
@@ -333,6 +345,30 @@ end
 def calculate_total_game_score
     # will add up the total game score
     # multiply by the percentage owned
+    funds_score = @funds * @percentage_owned * 0.01
+    empl_bonus = @employees.count * 1000
+    prod_bonus = @products.count * 1000 * product_strength_total
+    
+    total_game_score = funds_score + empl_bonus + prod_bonus
+    total_game_score.to_i
+end
+
+def improve_employees_morale(num, week)
+    @employees.each do |employee|
+        employee.increase_morale(num, week)
+    end
+end
+
+def improve_employees_skill(num, week)
+    @employees.each do |employee|
+        employee.increase_skill(num, week)
+    end
+end
+
+def improve_products(num, week)
+    @products.each do |product|
+        product.improve_product(num, week)
+    end
 end
 
 end

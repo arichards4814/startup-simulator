@@ -190,14 +190,20 @@ higher your score.\n\n
 +By raising your 'Recognition' you unlock the ability to raise \n
 money from more investors.\n\n
 +Your employee personalities matter. Try to combine or diversify \n
-and see what happens.\n
+and see what happens.\n\n
 +More employees on your team will help your products be built \n
-faster. \n
+faster. \n\n
 +Your employee skill will create products with better product \n
-strength.
-+The more programemrs you have, the faster your products will be \n
-built.
-+The more sales people you have, the more products you will sell.
+strength. \n\n
++The more programmers you have, the faster your products will be \n
+built. \n\n
++The more sales people you have, the more products you will sell.\n
++Your employees' morale will rise whenever you hire a new employee.\n
+\n \n
++ The menu items with question marks: '??????????' are unlockable\n
+increase your recognition, hire employees and grow your company \n
+to unlock these options! \n\n
+^^^^^^^^^^^^^^^^^^^^ SCROLL UP TO SEE MORE ^^^^^^^^^^^^^^^^^^^^^^^\n
 -----------------------------------------------------------"
 
 
