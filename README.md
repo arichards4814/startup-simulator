@@ -68,14 +68,14 @@ Create by Andrew Richards - github: arichards4814
 * border types - dash-sm, dash-md, dash-lg, line-sm, line-md, line-lg, carrot-sm, carrot-md, carrot-lg, squiggles-sm, squiggles-md,squiggles-lg, equals-md
 
 * UI.billboard(string) [UI.billboard("COMPANY PANEL")] will puts the following:
-`========================================================\n
- ---------------------COMPANY PANEL---------------------\n
- ========================================================`
+`========================================================`
+`---------------------COMPANY PANEL---------------------`
+`========================================================`
 
 * UI.announce(string) [UI.announce("THANKS FOR USING TINY GAME ENGINE")] will puts the following
-`_________________________________________________\n
- THANKS FOR USING TINY GAME ENGINE\n
- _________________________________________________`
+`_________________________________________________`
+`THANKS FOR USING TINY GAME ENGINE`
+`_________________________________________________`
 
 
 
