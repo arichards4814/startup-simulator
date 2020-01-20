@@ -93,15 +93,15 @@ Create by Andrew Richards - github: arichards4814
 Generates a random tech name for your company
 
 ## Menu Tree
-main_menu
-    raise_money
-    hire_employees
-        employee_choice
-    build/improve products
-        build
-        improve
-    company info
-    employee info
+- main_menu
+    * raise_money
+    * hire_employees
+        - employee_choice
+    * build/improve products
+        - build
+        - improve
+    * company info
+    * employee info
 
 
 
@@ -128,7 +128,7 @@ Will allow you to build stories with decision making branches that effect the di
 - [] add help menu
 - [] custom error handling
 - [] ability to have an odd number of menu items
-- [] ability to have unlimited number of menu items
+- [] ability to have up to 9 numbers of menu items
 - [x] additional borders included
 - [] instructions in the readme
 - [] metaprogram menu creator, making building menu trees easy.
