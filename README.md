@@ -135,9 +135,9 @@ Will allow you to build stories with decision making branches that effect the di
 
 ## Additions - Startup Simulator
 - [x] finish 4th menu - view company
-- [] add improve employee function
-- [] add improve product function
-- [] add raise money from other investors functions
+- [x] add improve employee function
+- [x] add improve product function
+- [x] add raise money from other investors functions
 - [] code in employee personality bonuses
 
 

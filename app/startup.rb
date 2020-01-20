@@ -322,24 +322,27 @@ end
 
 def personality_bonus
     ## not finished
-    personalities = @employees.map do |employee|
-        employee.personality
-    end
-    unique_personalities = []
+    # personality_hash = {}
+    # personalities = @employees.map do |employee|
+    #     employee.personality
+    # end
+    # unique_personalities = []
 
-    personalities.each do |personality|
-        if !unique_personalities.include?(personality)
-            unique_personalities << personality
-        end
-    end
+    # personalities.each do |personality|
+    #     if !unique_personalities.include?(personality)
+    #         unique_personalities << personality
+    #     end
+    # end
 
-    if personalities.count >= 3
-        unique_personalities.each do |u_personality|
-            personalities.each do |personality|
-                u_personality == personality
-            end
-        end
-    end
+    # if personalities.count >= 3
+    #     unique_personalities.each do |u_personality|
+    #         personalities.each do |personality|
+    #             if u_personality == personality
+    #                 personality_hash[:u_personality] += 1 
+    #             end
+    #         end
+    #     end
+    # end
 end
 
 def calculate_total_game_score
