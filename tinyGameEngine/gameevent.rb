@@ -18,11 +18,6 @@ def initialize(event_object, week, display, color = nil)
         @display = display
     end
     @color = color
-    # if color == red
-    #     @display = @display.to_s.red
-    # elsif color == blue
-    #     @display = @display.to_s.blue
-    # end
 
     @@all << self
 end
@@ -60,10 +55,14 @@ def self.weeks_summary(week)
                 puts LINE_SQUIGGLES_MEDIUM.red
                 puts event.display.red
                 puts LINE_SQUIGGLES_MEDIUM.red
-            else
+            elsif event.color == "green"
                 puts LINE_SQUIGGLES_MEDIUM.green
                 puts event.display.green
                 puts LINE_SQUIGGLES_MEDIUM.green
+            else
+                puts LINE_SQUIGGLES_MEDIUM.blue
+                puts event.display.blue
+                puts LINE_SQUIGGLES_MEDIUM.blue
             end
         end
         

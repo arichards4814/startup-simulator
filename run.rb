@@ -93,7 +93,8 @@ def begin_game
     view_company_ui = UI.new("view_company_ui")
     view_company_ui.menu_items = ["[back] to go back", ""]
     view_company_ui.header = "                     COMPANY PANEL - Week: #{week}"
-    view_company_ui.body = "            #{our_startup.name}\n Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}"
+    # view_company_ui.body = "            #{our_startup.name}\n Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}"
+    view_company_ui.body = our_startup.method(:company_info)
     view_company_ui.has_border = true
     view_company_ui.border_type = "dash-lg"
     view_company_ui.has_divider = true
@@ -176,6 +177,7 @@ def begin_game
     raise_capital_ui.set_logic(raise_f_and_f)
 
    
+
     ## CREATE GAME TRIGGERS HERE # Must regenerate in the game loop
     unlock_raise_menu_2 = lambda {raise_capital_ui.unlock_menu(2)}
     unlock_raise_menu_3 = lambda {raise_capital_ui.unlock_menu(3)}
@@ -232,7 +234,7 @@ def begin_game
     i = 0
 
     ######Game Loop######
-    while i < 10
+    while i < 300
         week = GameEvent.gameclock
     ##refresh menus
     main_menu_ui.header = "                     MAIN MENU - Week: #{week}"
@@ -244,9 +246,9 @@ def begin_game
     build_improve_prod_ui.header = "                       BUILD / IMPROVE PRODUCTS - Week: #{week}"
     build_improve_prod_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
     view_company_ui.header = "                     COMPANY PANEL - Week: #{week}"
-    view_company_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}".blue
+    view_company_ui.body = our_startup.method(:company_info)
     view_employees_ui.header = "                     EMPLOYEE PANEL - Week: #{week}"
-    view_employees_ui.body = "            #{our_startup.name}\n                    Funds: #{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}\n" + our_startup.list_employees
+    view_employees_ui.body = "            #{our_startup.name}\n                    Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}\n" + our_startup.list_employees
     view_products_ui.header = "                     PRODUCTS PANEL - Week: #{week}"
     view_products_ui.body = "                        #{our_startup.name}\n              Funds: $#{our_startup.funds} Employees: #{our_startup.employees.count} Products: #{our_startup.products.count}\n" + our_startup.list_products
     ##regenerate employee choices...
@@ -332,13 +334,9 @@ def begin_game
     GameEvent.increment_game_clock(1)
     i += 1;
 
-
-
     end
 
     # binding.pry
-    
-    
     
 end
 
@@ -352,27 +350,6 @@ def instantiate_employees(num)
     i += 1
     end
 end
-
-
-
-
-def build_product_loop(current_week, num_of_weeks_to_build, product_name)
-    product_object = Product.new(product_name)
-    i = 0
-
-    while i < num_of_weeks_to_build
-
-        UI.announce("Week: #{current_week + i} \n               Your new product is being built")
-        i += 1 
-    end
-    product_object.status = "built"
-
-    UI.announce("CONGRATULATIONS #{product_name} HAS BEEN BUILT!!")
-
-    ## will return the new number of weeks that we're on
-    return current_week + num_of_weeks_to_build
-end
-
 
 
 

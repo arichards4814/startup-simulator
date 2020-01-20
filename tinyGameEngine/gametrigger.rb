@@ -10,7 +10,7 @@ def initialize(check_variable, condition_as_string, int_to_compare, method_on_me
     @check_variable = check_variable
     @condition_as_string = condition_as_string
     @int_to_compare = int_to_compare
-    @method_on_met = method_on_met
+    @method_on_met = method_on_met #method to call when condition is met
 
     @@all << self
 end

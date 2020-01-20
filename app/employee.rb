@@ -39,6 +39,26 @@ def increase_skill(num)
     puts "----------------------------------------------------".green
 end
 
+def increase_morale(num, current_week)
+    @morale += num
+    if @morale > 10
+        @morale = 10
+    elsif @morale < 0
+        @morale = 0
+    end
+    GameEvent.new(nil,current_week, "Your employee #{self.name}'s morale has increased.", "green")
+end
+
+def decrease_morale(num, current_week)
+    @morale -= num
+    if @morale > 10
+        @morale = 10
+    elsif @morale < 0
+        @morale = 0
+    end
+    GameEvent.new(nil,current_week, "Your employee #{self.name}'s morale has dropped.", "red")
+end
+
 def self.three_emps
     three_emps = []
     if @@all.count < 3
@@ -61,6 +81,8 @@ def self.three_emps
     end
     three_emps
 end
+
+
 
 
 

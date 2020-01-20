@@ -22,8 +22,15 @@ def self.build_product_loop(current_week, num_of_weeks_to_build, product_name, s
     i = 0
 
     while i < num_of_weeks_to_build
-
-        UI.announce("Week: #{current_week + i} \n               Your new product #{product_name} is being built")
+        UI.blank_space(5)
+        UI.billboard("Week: #{current_week + i}: Your new product #{product_name} is being built")
+        startup_object.weekly_payroll_deducted(current_week + i)
+        startup_object.weekly_products_sold(current_week + i)
+        startup_object.employees.each do |employee|
+            employee.decrease_morale(1, current_week + i)
+        end
+        GameEvent.weeks_summary(current_week + i)
+        UI.ask_for_enter
         i += 1 
     end
 
@@ -53,11 +60,13 @@ def self.build_product_loop(current_week, num_of_weeks_to_build, product_name, s
 
     product_object.status = "built"
     startup_object.products << product_object
-
+    
+    UI.blank_space(5)
     UI.announce("CONGRATULATIONS #{product_name} HAS BEEN BUILT!!", "green")
 
     ## will return the new number of weeks that we're on
     GameEvent.increment_game_clock(num_of_weeks_to_build)
+
    
 end
 

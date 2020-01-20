@@ -184,13 +184,17 @@ enter.\n
 ================================================================\n
 ---------------STARTUP SIMULATOR TIPS AND TRICKS--------------\n
 ================================================================\n
-Every time you raise money you give up equity in the company \n
++Every time you raise money you give up equity in the company \n
 for a dollar value. The more you own at the end of the game the \n
 higher your score.\n\n 
-By raising your 'Recognition' you unlock the ability to raise \n
++By raising your 'Recognition' you unlock the ability to raise \n
 money from more investors.\n\n
-Your employee personalities matter. Try to combine or diversify \n
++Your employee personalities matter. Try to combine or diversify \n
 and see what happens.\n
++More employees on your team will help your products be built \n
+faster. \n
++Your employee skill will create products with better product \n
+strength.
 -----------------------------------------------------------"
 
 

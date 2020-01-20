@@ -19,9 +19,9 @@ def self.all
     @@all
 end
 
-def set_name(name)
-    @name = name
-end
+# def set_name(name)
+#     @name = name
+# end
 
 def increase_recognition(num)
     @recognition += num
@@ -96,6 +96,14 @@ def raise_capital_friends_and_fam(week)
     end
 end
 
+
+def raise_capital(level)
+
+
+
+
+end
+
 def weekly_payroll_deducted(week)
     payroll = 0
     @employees.each do |employee|
@@ -136,7 +144,7 @@ def weekly_products_sold(week)
         GameEvent.new(nil, week, "#{product.name} has sold #{copies_sold} copies at $#{product.price}.")
     end
 
-    GameEvent.new(nil, week, "You generated $#{total_revenue} in revenue.")
+    GameEvent.new(nil, week, "You generated $#{total_revenue} in revenue.", "green")
     @funds = @funds + total_revenue
 
 end
@@ -155,7 +163,7 @@ def list_employees
         final_output = "\n                You have not hired any employees. \n      ".blue
     else
         employees.each do |employee|
-            final_output = final_output + "___________________________________________________________\n   Name: #{employee.name}    |   Job: #{employee.job}  |   Skill: #{employee.skill_level} \n  Salary: #{employee.salary}  |  Morale: #{employee.morale}    |  Personality: #{employee.personality}\n___________________________________________________________ \n  "
+            final_output = final_output + "___________________________________________________________\n   Name: #{employee.name}    |   Job: #{employee.job}  |   Skill: #{employee.skill_level} \n  Salary: $#{employee.salary}  |  Morale: #{employee.morale}    |  Personality: #{employee.personality}\n___________________________________________________________ \n  "
         end
     end
     final_output
@@ -173,5 +181,73 @@ def list_products
     final_output
 end
 
+def company_info
+    ## get average morale
+    num = 0 
+    num2 = 0
+    if @employees.count > 0
+        @employees.each do |employee|
+            num = employee.morale + num
+        end
+        num = num / @employees.count
+    end
+
+    #get average product strength
+    if @products.count > 0
+        @products.each do |product|
+            num2 = product.product_strength + num2
+        end
+        num2 = num2 / @products.count
+    end
+
+    morale = Startup.excellent_or_severe(num)
+    recognition = Startup.recognition_excellent_etc(@recognition)
+    products_str = Startup.excellent_or_severe(num2)
+    team_skill = Startup.excellent_or_severe(hired_employee_total_skill)
+    payroll = 0
+    @employees.each do |employee|
+            payroll = payroll + (employee.salary / 52)
+    end 
+
+    puts "                    Team Morale: #{morale}"
+    puts "                    Recognition: #{recognition}"
+    puts "                    Products Strength: #{products_str}"
+    puts "                    Team Expertise: #{team_skill}"
+    puts "                    Payroll: $#{payroll} per week"
+    # puts "Team Chemistry: "
+    
+end
+
+def self.excellent_or_severe(num)
+    if num == 8 || num == 9 || num >= 10
+        read ="Excellent".magenta
+    elsif num == 6 || num == 7
+        read = "Good".green
+    elsif num == 5
+        read = "OK".blue
+    elsif num == 3 || num == 4
+        read = "Bad".red
+    elsif num == 2 || num == 1
+        read ="Severe".red
+    elsif num == 0
+        "N/A".yellow
+    end
+end
+
+def self.recognition_excellent_etc(num)
+    if num == 8 || num == 9 || num >= 10
+        read ="Worldwide".magenta
+    elsif num == 6 || num == 7
+        read = "Country Wide".green
+    elsif num == 5
+        read = "Regional".blue
+    elsif num == 3 || num == 4
+        read = "Locally Known".red
+    elsif num == 2 || num == 1
+        read ="Low".red
+    elsif num == 0
+        "N/A".yellow
+    end
+end
 
 end

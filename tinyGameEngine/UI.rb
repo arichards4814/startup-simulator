@@ -200,7 +200,11 @@ class UI
         if @has_divider
             puts border_visual
         end
+        if @body.class == Method
+        puts @body.call
+        else
         puts @body
+        end
         self.visual
         if @has_border
             puts border_visual

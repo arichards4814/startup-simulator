@@ -125,16 +125,20 @@ Will allow you to build stories with decision making branches that effect the di
 
 ## Additions - Tiny Game Engine
 
-- [] add help menu
+- [x] add help menu
 - [] custom error handling
-- [] ability to have an odd number of menu items
+- [x] ability to have an odd number of menu items
 - [] ability to have up to 9 numbers of menu items
 - [x] additional borders included
-- [] instructions in the readme
+- [x] instructions in the readme
 - [] metaprogram menu creator, making building menu trees easy.
 
 ## Additions - Startup Simulator
-- [] finish 4th menu - view company
+- [x] finish 4th menu - view company
+- [] add improve employee function
+- [] add improve product function
+- [] add raise money from other investors functions
+- [] code in employee personality bonuses
 
 
 
