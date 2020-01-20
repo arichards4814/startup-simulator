@@ -68,6 +68,7 @@ our_startup.hire_employee(employ4, 1)
 
 # build_product_loop(3, 3, new_prod_name)
 UI.billboard("COMPANY PANEL")
+UI.announce("THANKS FOR USING TINY GAME ENGINE")
 
 binding.pry
 
