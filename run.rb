@@ -6,7 +6,7 @@ require_relative './config/environment.rb'
 def begin_game
 
 ##Set game clock
-    week = GameEvent.gameclock; 
+    turn = GameEvent.gameclock; 
 
 ##Generate Employees
     instantiate_employees(100) # creates 100 employees
@@ -246,6 +246,8 @@ def begin_game
 
 
 #########GAME BEGINS HERE####################
+    system("Clear")
+    #system("say 'Welcome to Startup Simulator'")
 
     UI.billboard("WELCOME TO STARTUP SIMULATOR!!!")
     UI.blank_space(5)
