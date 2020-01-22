@@ -43,7 +43,8 @@ In order to use menus, follow these steps:
     - important note! Your first menu should have itself as the parent menu... otherwise the game will break.
 
 Take a look at my example here:
-`
+
+```
     main_menu_ui = UI.new("main_menu_ui")
     main_menu_ui.menu_items = ["[1] - Try to Raise Capital  ", "[2] - Hire Employees        ", "[3] - Build/Improve Products",
                             "[4] - View Company", "[5] - View Employees", "[6] - View Products"]
@@ -53,7 +54,8 @@ Take a look at my example here:
     main_menu_ui.border_type = "dash-lg"
     main_menu_ui.has_divider = true
     main_menu_ui.parent_menu = main_menu_ui
-`
+```
+
 4. Once you initialize all of your menus, it's time to set your logic!!! To do so, in your file create a new area (after initializing all of your menus) to set all of your menu logic. 
     - use the .set_logic instance method to store the methods you want to run when that menu item is chosen. for example you would store 'main_menu.method(:prompt)' if you want that item to go back to the main menu. The .prompt method on a UI object will always prompt the menu and ask for input.
 
