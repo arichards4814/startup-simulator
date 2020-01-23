@@ -56,6 +56,9 @@ Take a look at my example here:
     main_menu_ui.parent_menu = main_menu_ui
 ```
 
+![Image description]('./images/SUS_screen.png)
+
+
 4. Once you initialize all of your menus, it's time to set your logic!!! To do so, in your file create a new area (after initializing all of your menus) to set all of your menu logic. 
     - use the .set_logic instance method to store the methods you want to run when that menu item is chosen. for example you would store 'main_menu.method(:prompt)' if you want that item to go back to the main menu. The .prompt method on a UI object will always prompt the menu and ask for input.
 
