@@ -6,7 +6,7 @@ require_relative './config/environment.rb'
 def begin_game
 
 ##Set game clock
-    turn = GameEvent.gameclock; 
+    week = GameEvent.gameclock; 
 
 ##Generate Employees
     instantiate_employees(100) # creates 100 employees
