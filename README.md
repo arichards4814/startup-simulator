@@ -56,7 +56,7 @@ Take a look at my example here:
     main_menu_ui.parent_menu = main_menu_ui
 ```
 
-![The menu above when calling main_menu_ui.prompt ]('./images/SUS_Screen.png')
+![The menu above when calling main_menu_ui.prompt ](https://github.com/arichards4814/startup-simulator/blob/master/images/SUS_Screen.png)
 
 
 4. Once you initialize all of your menus, it's time to set your logic!!! To do so, in your file create a new area (after initializing all of your menus) to set all of your menu logic. 
