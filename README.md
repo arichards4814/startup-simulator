@@ -59,6 +59,9 @@ Take a look at my example here:
 ![The menu above when calling main_menu_ui.prompt ](https://github.com/arichards4814/startup-simulator/blob/master/images/SUS_Screen.png)
 
 
+## Here is the current high score... BEAT IT!
+![Miles](https://github.com/arichards4814/startup-simulator/blob/master/images/miles_screenshot.png)
+
 
 
 4. Once you initialize all of your menus, it's time to set your logic!!! To do so, in your file create a new area (after initializing all of your menus) to set all of your menu logic. 
