@@ -8,5 +8,5 @@ require_relative '../tinyGameEngine/gametrigger.rb'
 include NamesVariables
 include NamesVariablesMenWomen
 include ProductNameVariables
-require 'pry'
+# require 'pry'
 require 'colorize'

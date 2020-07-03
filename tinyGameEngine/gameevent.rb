@@ -1,7 +1,7 @@
 require_relative 'ui_design_module.rb'
 include DesignModule
 require 'colorize'
-require 'pry'
+# require 'pry'
 
 class GameEvent
 

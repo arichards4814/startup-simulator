@@ -1,5 +1,5 @@
 require_relative 'UI.rb'
-require 'pry'
+# require 'pry'
 require_relative 'tech_name_generator.rb'
 require_relative 'ui_design_module.rb'
 require_relative 'startup.rb'

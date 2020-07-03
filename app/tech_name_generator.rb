@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 require 'colorize'
 
 ## in order to give another script access to these variables I need to wrap

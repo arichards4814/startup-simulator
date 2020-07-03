@@ -80,7 +80,7 @@ class UI
                     final_item = "[#{menu_items.count}] - ???????????"
                 end
                 puts "   #{final_item}"
-            binding.pry
+            # binding.pry
         end
     end
 
