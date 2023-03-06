@@ -1,5 +1,5 @@
 # STARTUP SIMULATOR
-## Like lemonade stand but way more advanced.
+## Like lemonade stand but you build a startup.
 
 What you need....
 Run 
